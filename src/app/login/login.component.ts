@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../core/auth.service'
+import { UserService } from '../core/user.service'
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.generateTime()
   }
 
   createForm() {
@@ -35,10 +38,30 @@ export class LoginComponent implements OnInit {
   tryLogin(value) {
     this.authService.doLogin(value)
       .then(res => {
+        this.prepareLogUser()
         this.router.navigate(['/main']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
+      })
+  }
+
+  prepareLogUser() {
+    var uid = this.userService.getUserUid()
+    this.userService.getUserName(uid)
+      .then(res => {
+        this.tryLogUser(uid, res)
+      }, err => {
+        console.log(this.errorMessage)
+      })
+  }
+
+  tryLogUser(uid, name) {
+    this.authService.logUser(uid, name)
+      .then(res => {
+        console.log(res);
+      }, err => {
+        console.log(err);
       })
   }
 }

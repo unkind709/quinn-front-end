@@ -9,14 +9,12 @@ export class UserService {
 
   private dbPath = '/building';
   matrixData: AngularFireList<any> = null;
-  userDataRef: AngularFireObject<any>
 
   constructor(
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth
   ) {
     this.matrixData = db.list(this.dbPath);
-    this.userDataRef = db.object('users');
   }
 
   getCurrentUser() {
@@ -51,7 +49,7 @@ export class UserService {
     return new Promise<any>((resolve, reject) => {
       var permissionDefault = 0
       var groupDefault = "viewer"
-      var uid = firebase.auth().currentUser.uid;
+      var uid = this.getUserUid();
       var user = firebase.database().ref('users/' + uid).set({
         group: groupDefault,
         name: name,
@@ -62,12 +60,17 @@ export class UserService {
     })
   }
 
-  logUser() {
-    var ref = firebase.database().ref("login-log")
+  getUserName(uid) {
+    return new Promise<any>((resolve, reject) => {
+      var user = firebase.database().ref('users/' + uid)
+      user.once('value').then(function (snapshot) {
+        var name = snapshot.child('name').val();
+        resolve(name)
+      });
+    })
+  }
 
-    ref.set({ name: "Ada", age: 36 })
-      .then(function () {
-        return ref.once("value");
-      })
+  getUserUid() {
+    return firebase.auth().currentUser.uid;
   }
 }

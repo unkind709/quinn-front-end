@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import * as moment from 'moment';
 
 @Injectable()
 export class AuthService {
@@ -84,5 +85,21 @@ export class AuthService {
     });
   }
 
+  generateTime() {
+    var keyTime = moment().format('YYMMDD-hhmmss');
+    return "QN" + keyTime;
+  }
 
+  logUser(uid, userName) {
+    return new Promise((resolve, reject) => {
+      var ref = firebase.database().ref("login-log/" + this.generateTime())
+      ref.set({
+        created_date: moment().format('YYYY-MM-DD'),
+        name: userName,
+        uid: uid
+      }).then(res => {
+        resolve(res);
+      }, err => reject(err))
+    })
+  }
 }
