@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../core/auth.service'
+import { UserService } from '../core/user.service'
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -28,6 +30,7 @@ export class RegisterComponent implements OnInit {
 
   createForm() {
     this.registerForm = this.fb.group({
+      name: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -37,8 +40,21 @@ export class RegisterComponent implements OnInit {
     this.authService.doRegister(value)
       .then(res => {
         console.log(res);
+        this.trySaveUser(value.name)
         this.errorMessage = "";
         this.successMessage = "Your account has been created";
+      }, err => {
+        console.log(err);
+        this.errorMessage = err.message;
+        this.successMessage = "";
+      })
+  }
+
+  trySaveUser(name) {
+    this.userService.saveUser(name)
+      .then(res => {
+        console.log(res);
+        this.errorMessage = "";
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
