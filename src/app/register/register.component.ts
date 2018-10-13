@@ -54,6 +54,7 @@ export class RegisterComponent implements OnInit {
     this.userService.saveUser(name)
       .then(res => {
         console.log(res);
+        this.router.navigate(['/main']);
         this.errorMessage = "";
       }, err => {
         console.log(err);
