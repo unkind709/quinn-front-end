@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       .then(res => {
         this.tryLogUser(uid, res)
       }, err => {
-        console.log(this.errorMessage)
+        console.log(err)
       })
   }
 
