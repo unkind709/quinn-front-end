@@ -9,3 +9,38 @@
 .padding-login {
   padding-top: 100px;
 }
+
+.card {
+  background-color: #382F2D;
+  color: white;
+  border: 1px solid #E1B77E;
+  outline: 15px solid #382F2D;
+}
+
+input {
+  background-color: #382F2D;
+  color: white;
+  border: 1px solid #E1B77E;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+
+button {
+  background-color: rgba(225,183,126,0.5);
+  border: 4px solid #E1B77E;
+}
+
+a {
+  color: #E1B77E;
+}
