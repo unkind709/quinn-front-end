@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
   tryLogUser(uid, name) {
     this.authService.logUser(uid, name)
       .then(res => {
-        console.log(res);
+        console.log("Log User Success");
       }, err => {
         console.log(err);
       })
