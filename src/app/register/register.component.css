@@ -22,6 +22,11 @@
   outline: 15px solid #382F2D;
 }
 
+.maxsize {
+  max-width: 544px;
+  margin: auto;
+}
+
 input {
   background-color: #382F2D;
   color: white;
