@@ -1,0 +1,18 @@
+<h1 class="display-1">main works!</h1>
+<button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <tbody>
+          <tr *ngFor="let matrix of matrixData">
+            <th scope="row">{{matrix.key}}</th>
+            <td *ngIf="matrix.key === 'diagram-a'">
+              {{matrix['floor-7'].A0701.floor}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

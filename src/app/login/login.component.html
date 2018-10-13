@@ -1,0 +1,31 @@
+<div class="container margin-login">
+  <h2 class="text-center">Login</h2>
+  <h4 class="text-center">Please login to proceed.</h4>
+  <div class="row mt-5">
+    <div class="col-6 offset-3">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="loginForm">
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control form-control-lg" placeholder="Your Email">
+            </div>
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Your Password">
+              <label class="error">{{errorMessage}}</label>
+            </div>
+            <div class="form-group form-check text-center">
+              <input type="checkbox" class="form-check-input" id="remember">
+              <label class="form-check-label" for="remember">Remember me</label>
+            </div>
+            <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-primary btn-lg btn-block">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12 text-center">
+      <p>No account yet? <a href="/register">Create an account</a></p>
+    </div>
+  </div>
+</div>
