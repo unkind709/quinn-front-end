@@ -1,3 +1,11 @@
-.margin-login {
-  margin-top: 100px;
+.login-page {
+  background-image: url('../../assets/img/bg-quinn.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.padding-login {
+  padding-top: 100px;
 }
