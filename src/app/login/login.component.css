@@ -54,11 +54,14 @@ button {
   background-color: rgba(225, 183, 126, 0.5);
   border: 4px solid #E1B77E;
   border-radius: 15px;
+  color: white
 }
 
 button:hover {
-  background-color: rgba(235, 198, 146, 0.5);
-  border: 4px solid #E1B77E;
+  background-color: #E1B77E;
+  color: white;
+  border: 4px solid white;
+  border-radius: 15px;
 }
 
 button:visited {
