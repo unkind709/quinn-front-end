@@ -56,7 +56,9 @@ export class UserService {
         group: groupDefault,
         name: name,
         permission: permissionDefault
-      });
+      }).then(res => {
+        resolve(res)
+      }, err => reject(err))
     })
   }
 
