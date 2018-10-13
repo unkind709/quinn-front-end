@@ -1,7 +1,7 @@
 <div class="login-page background-tint">
   <div class="padding-login">
     <div class="row mt-5 ml-0 mr-0">
-      <div class="col-6 offset-3">
+      <div class="col-md-6 maxsize">
         <div class="card">
           <h2 class="text-center mt-4">Login</h2>
           <h4 class="text-center">Please login to proceed.</h4>
@@ -14,11 +14,15 @@
                 <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Your Password">
                 <label class="error">{{errorMessage}}</label>
               </div>
-              <div class="form-group form-check text-center">
-                <input type="checkbox" class="form-check-input" id="remember">
-                <label class="form-check-label" for="remember">Remember me</label>
+              <div class="form-group form-check">
+                <label class="custom-checkbox" for="remember">Remember me
+                  <input type="checkbox" id="remember">
+                  <span class="checkmark"></span>
+                </label>
               </div>
-              <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-primary btn-lg btn-block"><h4>Login</h4></button>
+              <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-lg btn-block">
+                <h4>Login</h4>
+              </button>
             </form>
             <div class="row mt-4 ml-0 mr-0">
               <div class="col-12 text-center">
