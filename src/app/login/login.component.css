@@ -6,6 +6,11 @@
   height: 100vh;
 }
 
+.background-tint {
+  background-color: rgba(86, 67, 57,0.7);
+  background-blend-mode: multiply;
+}
+
 .padding-login {
   padding-top: 100px;
 }
@@ -39,8 +44,20 @@ input {
 button {
   background-color: rgba(225,183,126,0.5);
   border: 4px solid #E1B77E;
+  border-radius: 15px;
+}
+
+button:hover {
+  background-color: #E1B77E;
+  color: white;
+  border: 4px solid white;
+  border-radius: 15px;
 }
 
 a {
+  color: #E1B77E;
+}
+
+a:hover {
   color: #E1B77E;
 }
