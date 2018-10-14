@@ -97,7 +97,6 @@ a:hover {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-left: 37%;
 }
 
 /* Hide the browser's default checkbox */
@@ -112,8 +111,12 @@ a:hover {
 /* Create a custom checkbox */
 .checkmark {
   position: absolute;
-  top: 0;
-  left: 31%;
+  top: 45%;
+  /* position the top  edge of the element at the middle of the parent */
+  left: 35%;
+  /* position the left edge of the element at the middle of the parent */
+
+  transform: translate(-50%, -50%);
   height: 20px;
   width: 20px;
   background-color: #eee;

@@ -3,8 +3,7 @@ import { Location } from '@angular/common';
 import { map } from 'rxjs/operators';
 
 import { AuthService } from '../core/auth.service';
-import { UserService } from '../core/user.service';
-import { element } from 'protractor';
+import { MatrixService } from '../core/matrix.service';
 
 @Component({
   selector: 'app-main',
@@ -119,7 +118,7 @@ export class MainComponent implements OnInit {
   ];
 
   constructor(public authService: AuthService,
-    public userService: UserService,
+    public matrixService: MatrixService,
     private location: Location) { }
 
   ngOnInit() {
@@ -127,7 +126,7 @@ export class MainComponent implements OnInit {
   }
 
   getData() {
-    this.userService.getAllData().snapshotChanges().pipe(
+    this.matrixService.getAllData().snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
@@ -160,15 +159,20 @@ export class MainComponent implements OnInit {
   }
 
   toggleReserveA(room: string, floor: string) {
-    this.matrixData1[floor].map((element) => {
-      if (element['room-detail'].room === room) {
-        if (element.status === 'available') {
-          element.status = 'reserved';
-        } else {
-          element.status = 'available';
-        }
-      }
+    this.matrixService.reserve().then(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
     });
+    // this.matrixData1[floor].map((element) => {
+    //   if (element['room-detail'].room === room) {
+    //     if (element.status === 'available') {
+    //       element.status = 'reserved';
+    //     } else {
+    //       element.status = 'available';
+    //     }
+    //   }
+    // });
   }
 
   toggleReserveB(room: string, floor: string) {
