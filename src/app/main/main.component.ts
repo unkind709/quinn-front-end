@@ -120,6 +120,12 @@ export class MainComponent implements OnInit {
   room: string;
   floor: number;
 
+  total = 0;
+  availableTotal = 0;
+  reservedTotal = 0;
+  soldTotal = 0;
+  notAvailableTotal = 0;
+
   constructor(public authService: AuthService,
     public matrixService: MatrixService,
     private location: Location) { }
@@ -136,6 +142,7 @@ export class MainComponent implements OnInit {
     ).subscribe(res => {
       this.matrixData1 = res[0];
       this.matrixData2 = res[1];
+      this.getTotalSummary()
     });
   }
 
@@ -188,5 +195,32 @@ export class MainComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  getTotalSummary() {
+    var summaryBuildingA = this.getSummary(this.matrixData1)
+    var summaryBuildingB = this.getSummary(this.matrixData2)
+  }
+
+  getSummary(building) {
+    this.buildA.forEach(floor => {
+      Object.keys(building[floor.name]).forEach(element => {
+        this.total++
+        if (building[floor.name][element].status === 'available') {
+          this.availableTotal++;
+        } else if (building[floor.name][element].status === 'reserved') {
+          this.reservedTotal++;
+        } else if (building[floor.name][element].status === 'sold') {
+          this.soldTotal++;
+        } else if (building[floor.name][element].status === 'not-available') {
+          this.notAvailableTotal++;
+        }
+      })
+    });
+    console.log("total : " + this.total);
+    console.log("available : " + this.availableTotal);
+    console.log("reserved : " + this.reservedTotal);
+    console.log("sold : " + this.soldTotal);
+    console.log("notavailable : " + this.notAvailableTotal);
   }
 }
