@@ -29,24 +29,23 @@ table {
 }
 
 .reserved {
-  background-color: #ffc107;
+  background-color: #D6B478;
 }
 
 .sold {
-  background-color: red;
+  background-color: #971515;
   color: white;
 }
 
 .not-available {
-  background-color: black;
-  color: white;
+  background-color: #C9C4C1;
 }
 
 .total {
   margin: auto;
   margin-top: 20%;
-  background-color: rgb(201, 196, 193);
-  border: 10px solid rgb(201, 196, 193);
+  background-color: #C9C4C1;
+  border: 10px solid #C9C4C1;
 }
 
 .logo {
@@ -88,7 +87,7 @@ diagram {
 }
 
 .box-reserved {
-  background-color: #ffc107;
+  background-color: #D6B478;
   height: 20px;
   width: 20px;
   vertical-align: middle;
@@ -96,7 +95,7 @@ diagram {
 }
 
 .box-sold {
-  background-color: red;
+  background-color: #971515;
   height: 20px;
   width: 20px;
   vertical-align: middle;
@@ -104,7 +103,7 @@ diagram {
 }
 
 .box-not-available {
-  background-color: black;
+  background-color: #C9C4C1;
   height: 20px;
   width: 20px;
   vertical-align: middle;
