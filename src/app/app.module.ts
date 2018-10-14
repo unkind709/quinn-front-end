@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -19,6 +20,7 @@ import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 import { MatrixService } from './core/matrix.service';
+import { NgbdModalConfig } from './shared/modal/modal-config';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { MatrixService } from './core/matrix.service';
     RegisterComponent,
     AdminComponent,
     PageNotFoundComponent,
-    MainComponent
+    MainComponent,
+    NgbdModalConfig
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

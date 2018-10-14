@@ -41,10 +41,6 @@ export class UserService {
     })
   }
 
-  getAllData(): AngularFireList<any> {
-    return this.matrixData;
-  }
-
   saveUser(name) {
     return new Promise<any>((resolve, reject) => {
       var permissionDefault = 0

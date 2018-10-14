@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { map } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import { MatrixService } from '../core/matrix.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  @ViewChild('modal') modal;
   matrixData1: Array<any>;
   matrixData2: Array<any>
   buildA = [
@@ -116,6 +116,9 @@ export class MainComponent implements OnInit {
       floor: 7
     },
   ];
+  building: string;
+  room: string;
+  floor: number;
 
   constructor(public authService: AuthService,
     public matrixService: MatrixService,
@@ -157,14 +160,30 @@ export class MainComponent implements OnInit {
     }
   }
 
-  toggleReserve(building: string, room: string, floor: number) {
-    console.log(building, room, floor);
-    if (building === 'A') {
-      building = 'diagram-a';
-    } else if (building === 'B') {
-      building = 'diagram-b';
+  openModal(message, type, action) {
+    this.modal.open(message, type, action);
+  }
+
+  toggleReserve(roomdata: any, room: string, floor: number) {
+    console.log(roomdata, room, floor);
+
+    if (roomdata.diagram === 'A') {
+      this.building = 'diagram-a';
+    } else if (roomdata.diagram === 'B') {
+      this.building = 'diagram-b';
     }
-    this.matrixService.reserve(building, room, floor).then(res => {
+    this.room = room;
+    this.floor = floor;
+
+    if (roomdata.status === 'available') {
+      this.openModal("Reserve?", 'prompt', 'reserved');
+    } else {
+      this.openModal("Can't reserve.", 'error', '');
+    }
+  }
+
+  doReserve() {
+    this.matrixService.reserve(this.building, this.room, this.floor).then(res => {
       console.log(res);
     }, err => {
       console.log(err);

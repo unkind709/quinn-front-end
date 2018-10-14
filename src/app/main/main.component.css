@@ -22,3 +22,13 @@
 .reserved {
   background-color: #ffc107;
 }
+
+.sold {
+  background-color: red;
+  color: white;
+}
+
+.not-available {
+  background-color: black;
+  color: white;
+}
