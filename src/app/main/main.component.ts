@@ -142,6 +142,7 @@ export class MainComponent implements OnInit {
     ).subscribe(res => {
       this.matrixData1 = res[0];
       this.matrixData2 = res[1];
+      this.clearSummary()
       this.getTotalSummary()
     });
   }
@@ -217,10 +218,13 @@ export class MainComponent implements OnInit {
         }
       })
     });
-    console.log("total : " + this.total);
-    console.log("available : " + this.availableTotal);
-    console.log("reserved : " + this.reservedTotal);
-    console.log("sold : " + this.soldTotal);
-    console.log("notavailable : " + this.notAvailableTotal);
+  }
+
+  clearSummary() {
+    this.total = 0;
+    this.reservedTotal = 0;
+    this.soldTotal = 0;
+    this.availableTotal = 0;
+    this.notAvailableTotal = 0;
   }
 }
