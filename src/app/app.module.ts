@@ -9,6 +9,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { environment } from '../environments/environment.prod';
@@ -23,6 +24,7 @@ import { UserService } from './core/user.service';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    // AdminComponent,
     PageNotFoundComponent,
     MainComponent
   ],
