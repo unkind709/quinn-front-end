@@ -32,22 +32,28 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     });
   }
 
   tryRegister(value) {
-    this.authService.doRegister(value)
-      .then(res => {
-        console.log(res);
-        this.trySaveUser(value.name)
-        this.errorMessage = "";
-        this.successMessage = "Your account has been created";
-      }, err => {
-        console.log(err);
-        this.errorMessage = err.message;
-        this.successMessage = "";
-      })
+    if (value.password === value.confirmPassword) {
+      this.authService.doRegister(value)
+        .then(res => {
+          console.log(res);
+          this.trySaveUser(value.name)
+          this.errorMessage = "";
+          this.successMessage = "Your account has been created";
+        }, err => {
+          console.log(err);
+          this.errorMessage = err.message;
+          this.successMessage = "";
+        })
+    } else {      
+      this.errorMessage = "Password field doesn't match";
+      this.successMessage = "";
+    }
   }
 
   trySaveUser(name) {
