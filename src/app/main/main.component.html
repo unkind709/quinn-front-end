@@ -22,9 +22,6 @@
 <div class="row ml-0 mr-0 margin-table">
   <div class="col-xl-2 table-responsive d-none d-xl-block">
     <table class="table-bordered matrix float-right" width="100">
-      <tr>
-        <td class="room-md no-border"></td>
-      </tr>
       <tbody>
         <tr *ngFor="let floor of floorData">
           <td class="floor-pointer" *ngIf="!!floor.name">{{floor.name}} FLOOR</td>
@@ -46,9 +43,6 @@
           <td class="room-md no-border"></td>
           <td class="room-md no-border"></td>
           <td class="room-sm no-border"></td>
-        </tr>
-        <tr>
-          <td class="floor-space"></td>
         </tr>
         <tr *ngFor="let floor of buildA">
           <td *ngFor="let matrix of matrixData1[floor.name]; let i = index" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
@@ -78,9 +72,6 @@
           <td class="room-md no-border"></td>
           <td class="room-md no-border"></td>
           <td class="room-md no-border"></td>
-        </tr>
-        <tr>
-          <td class="floor-space"></td>
         </tr>
         <tr *ngFor="let floor of buildA">
           <td *ngIf="floor.floor > 24" colspan="6" class="no-border"></td>
@@ -146,21 +137,25 @@
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-3">
-        <div class="box-available"></div>
-        <div class="box-desc ml-2">Available</div>
-      </div>
-      <div class="col-3">
-        <div class="box-reserved"></div>
-        <div class="box-desc ml-2">Reserved</div>
-      </div>
-      <div class="col-3">
-        <div class="box-sold"></div>
-        <div class="box-desc ml-2">Sold</div>
-      </div>
-      <div class="col-3">
-        <div class="box-not-available"></div>
-        <div class="box-desc ml-2">Not Available</div>
+      <div class="col-10">
+        <div class="row">
+          <div class="col-3">
+            <div class="box-available"></div>
+            <div class="box-desc ml-2">Available</div>
+          </div>
+          <div class="col-3">
+            <div class="box-reserved"></div>
+            <div class="box-desc ml-2">Reserved</div>
+          </div>
+          <div class="col-3">
+            <div class="box-sold"></div>
+            <div class="box-desc ml-2">Sold</div>
+          </div>
+          <div class="col-3">
+            <div class="box-not-available"></div>
+            <div class="box-desc ml-2">Not Available</div>
+          </div>
+        </div>
       </div>
       <a class="box-desc" style="position: absolute; bottom: 0; right: 20px; z-index: 1; text-decoration: none;" href
         (click)="logout()">Logout</a>
