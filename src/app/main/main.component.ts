@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 
 import { AuthService } from '../core/auth.service';
 import { MatrixService } from '../core/matrix.service';
+import { UserService } from '../core/user.service';
+import { FirebaseUserModel } from '../core/user.model';
 
 @Component({
   selector: 'app-main',
@@ -116,9 +118,16 @@ export class MainComponent implements OnInit {
       floor: 7
     },
   ];
+
   building: string;
   room: string;
   floor: number;
+  userModel: FirebaseUserModel = {
+    uid: '',
+    username: '',
+    permission: 0
+  };
+
 
   total = 0;
   availableTotal = 0;
@@ -128,10 +137,33 @@ export class MainComponent implements OnInit {
 
   constructor(public authService: AuthService,
     public matrixService: MatrixService,
+    public userService: UserService,
     private location: Location) { }
 
   ngOnInit() {
+    this.getUser();
     this.getData();
+  }
+
+  getUser() {
+    this.userService.getCurrentUser().then(res1 => {
+      this.userModel.uid = res1.uid;
+      this.userService.getUserName(res1.uid)
+        .then(res => {
+          this.userModel.username = res;
+        }, err => {
+          console.log(err)
+        });
+      this.userService.getPermission(res1.uid)
+        .then((res2) => {
+          this.userModel.permission = res2;
+          console.log(res2);
+        }, (err2) => {
+          console.log(err2);
+        });
+    }, (err1) => {
+      console.log(err1);
+    });
   }
 
   getData() {
@@ -183,19 +215,25 @@ export class MainComponent implements OnInit {
     this.room = room;
     this.floor = floor;
 
-    if (roomdata.status === 'available') {
+    if (this.userModel.permission > 2 && roomdata.status === 'reserved') {
+      this.openModal("Cancel Reserve?", 'prompt', 'available');
+    } else if (this.userModel.permission <= 2 && roomdata.status === 'reserved') {
+      this.openModal("Can't cancel reserve.", 'error', '');
+    } else if (this.userModel.permission > 1 && roomdata.status === 'available') {
       this.openModal("Reserve?", 'prompt', 'reserved');
-    } else {
+    } else if (this.userModel.permission <= 1 && roomdata.status === 'available') {
       this.openModal("Can't reserve.", 'error', '');
     }
   }
 
-  doReserve() {
-    this.matrixService.reserve(this.building, this.room, this.floor).then(res => {
-      console.log(res);
-    }, err => {
-      console.log(err);
-    });
+  doReserve(action) {
+    console.log(action);
+    this.matrixService.reserve(this.building, this.room, this.floor, action, this.userModel)
+      .then(res => {
+        console.log('success');
+      }, err => {
+        console.log(err);
+      });
   }
 
   getTotalSummary() {
