@@ -28,7 +28,7 @@ export class MatrixService {
                 status: action
             }).then(res => {
                 resolve(res)
-                this.logMatrix(action, userModel.permission, userModel.username, userModel.uid);
+                this.logMatrix(action, userModel.group, userModel.username, userModel.uid);
             }, err => {
                 reject(err)
             });
@@ -40,14 +40,14 @@ export class MatrixService {
         return "QN" + keyTime;
     }
 
-    logMatrix(action, permission, username, uid) {
-        console.log(action, permission, username, uid);
+    logMatrix(action, group, username, uid) {
+        console.log(action, group, username, uid);
         return new Promise((resolve, reject) => {
             var ref = firebase.database().ref('matrix-log/' + this.generateTime())
             ref.set({
                 action: action,
                 created_date: moment().format('YYYY-MM-DD'),
-                group: permission,
+                group: group,
                 name: username,
                 uid: uid
             }).then(res => {

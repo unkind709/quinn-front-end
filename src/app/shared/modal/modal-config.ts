@@ -32,7 +32,20 @@ export class NgbdModalConfig {
     }
 
     confirm() {
-        this.doAction.emit(this.action);
+        if (this.action === 'available') {
+            this.doAction.emit('reserved');
+        } else if (this.action === 'reserved') {
+            this.doAction.emit('sold');
+        }
+        this.modalService.dismissAll();
+    }
+
+    cancel() {
+        if (this.action === 'reserved') {
+            this.doAction.emit('available');
+        } else if (this.action === 'sold') {
+            this.doAction.emit('reserved');
+        }
         this.modalService.dismissAll();
     }
 }

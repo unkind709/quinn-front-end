@@ -3,7 +3,7 @@
 <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
 
 <div class="row ml-0 mr-0">
-  <div class="col-5 table-responsive buildingA pl-0">
+  <div class="col-5 table-responsive pl-0">
     <table class="table-bordered" *ngIf="matrixData1">
       <tbody>
         <tr>
@@ -31,7 +31,7 @@
     </table>
   </div>
 
-  <div class="col-5 table-responsive buildingB pl-0">
+  <div class="col-5 table-responsive pl-0">
     <table class="table-bordered" *ngIf="matrixData2">
       <tbody>
         <tr>
@@ -60,31 +60,39 @@
       </tbody>
     </table>
   </div>
-  <div class="col-2 table-responsive totalInfo">
-    <table class="total">
-      <tbody>
-        <tr>
-          <td class="mc-6"><label class="bold">Total</label></td>
-          <td class="mc-6"><label>{{total}}</label></td>
-        </tr>
-        <tr>
-          <td class="mc-6"><label class="bold">Available</label></td>
-          <td class="mc-6"><label>{{availableTotal}}</label></td>
-        </tr>
-        <tr>
-          <td class="mc-6"><label class="bold">Reserved</label></td>
-          <td class="mc-6"><label>{{reservedTotal}}</label></td>
-        </tr>
-        <tr>
-          <td class="mc-6"><label class="bold">Sold</label></td>
-          <td class="mc-6"><label>{{soldTotal}}</label></td>
-        </tr>
-        <tr>
-          <td class="mc-6"><label class="bold">Not Available</label></td>
-          <td class="mc-6"><label>{{notAvailableTotal}}</label></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="col-2 table-responsive">
+    <div class="logo">
+      <img src="../../assets/img/logo.png">
+    </div>
+    <div class="diagram">
+      <img src="../../assets/img/metrix.png">
+    </div>
+    <div class="totalInfo">
+      <table class="total">
+        <tbody>
+          <tr>
+            <td class="mc-6 bold"><label>Total</label></td>
+            <td class="mc-6 sum bold"><label>{{total}}</label></td>
+          </tr>
+          <tr>
+            <td class="mc-6"><label>Available</label></td>
+            <td class="mc-6 sum"><label>{{availableTotal}}</label></td>
+          </tr>
+          <tr>
+            <td class="mc-6"><label>Reserved</label></td>
+            <td class="mc-6 sum"><label>{{reservedTotal}}</label></td>
+          </tr>
+          <tr>
+            <td class="mc-6"><label>Sold</label></td>
+            <td class="mc-6 sum"><label>{{soldTotal}}</label></td>
+          </tr>
+          <tr>
+            <td class="mc-6"><label>Not Available</label></td>
+            <td class="mc-6 sum"><label>{{notAvailableTotal}}</label></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <ngbd-modal-config #modal (doAction)="doReserve($event)"></ngbd-modal-config>

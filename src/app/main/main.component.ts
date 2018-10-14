@@ -125,7 +125,8 @@ export class MainComponent implements OnInit {
   userModel: FirebaseUserModel = {
     uid: '',
     username: '',
-    permission: 0
+    permission: 0,
+    group: ''
   };
 
 
@@ -148,16 +149,12 @@ export class MainComponent implements OnInit {
   getUser() {
     this.userService.getCurrentUser().then(res1 => {
       this.userModel.uid = res1.uid;
-      this.userService.getUserName(res1.uid)
-        .then(res => {
-          this.userModel.username = res;
-        }, err => {
-          console.log(err)
-        });
-      this.userService.getPermission(res1.uid)
-        .then((res2) => {
-          this.userModel.permission = res2;
-          console.log(res2);
+      this.userService.getUserDetail(res1.uid)
+        .then((res) => {
+          this.userModel.permission = res.permission;
+          this.userModel.username = res.name;
+          this.userModel.group = res.group
+          console.log(res);
         }, (err2) => {
           console.log(err2);
         });
@@ -215,14 +212,19 @@ export class MainComponent implements OnInit {
     this.room = room;
     this.floor = floor;
 
-    if (this.userModel.permission > 2 && roomdata.status === 'reserved') {
-      this.openModal("Cancel Reserve?", 'prompt', 'available');
-    } else if (this.userModel.permission <= 2 && roomdata.status === 'reserved') {
-      this.openModal("Can't cancel reserve.", 'error', '');
-    } else if (this.userModel.permission > 1 && roomdata.status === 'available') {
-      this.openModal("Reserve?", 'prompt', 'reserved');
-    } else if (this.userModel.permission <= 1 && roomdata.status === 'available') {
+    //checkPermission
+    if (roomdata.status === 'available' && this.userModel.permission > 1) {
+      this.openModal("Reserve?", 'prompt', roomdata.status);
+    } else if (roomdata.status === 'available' && this.userModel.permission <= 1) {
       this.openModal("Can't reserve.", 'error', '');
+    } else if (roomdata.status === 'reserved' && this.userModel.permission > 2) {
+      this.openModal("Sold or cancel reserve?", 'prompt', roomdata.status);
+    } else if (roomdata.status === 'reserved' && this.userModel.permission <= 2) {
+      this.openModal("Can't sold or cancel reserve.", 'error', '');
+    } else if (roomdata.status === 'sold' && this.userModel.permission > 3) {
+      this.openModal("Cancel sold?", 'prompt', roomdata.status);
+    } else if (roomdata.status === 'sold' && this.userModel.permission <= 3) {
+      this.openModal("Can't cancel sold.", 'error', '');
     }
   }
 
