@@ -18,6 +18,7 @@ import { MainComponent } from './main/main.component';
 import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
+import { MatrixService } from './core/matrix.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { UserService } from './core/user.service';
     AngularFirestoreModule,
     AngularFireDatabaseModule
   ],
-  providers: [AuthService, UserService, AuthGuard],
+  providers: [AuthService, UserService, AuthGuard, MatrixService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
