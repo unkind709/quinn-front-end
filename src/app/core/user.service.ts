@@ -66,6 +66,18 @@ export class UserService {
     })
   }
 
+  getPermission(uid) {
+    return new Promise<any>((resolve, reject) => {
+      let user = firebase.database().ref('users/' + uid)
+      user.once('value').then(res => {
+        let permission = res.child('permission').val();
+        resolve(permission);
+      }, err => {
+        reject(err);
+      });
+    });
+  }
+
   getUserUid() {
     return firebase.auth().currentUser.uid;
   }

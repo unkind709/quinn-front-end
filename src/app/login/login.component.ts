@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
 
   prepareLogUser() {
     var uid = this.userService.getUserUid()
+    console.log(uid);
     this.userService.getUserName(uid)
       .then(res => {
         this.tryLogUser(uid, res)

@@ -12,7 +12,7 @@ export class NgbdModalConfig {
     @ViewChild('prompt') prompt;
     action: string;
     message: string;
-    @Output() doAction = new EventEmitter<boolean>();
+    @Output() doAction = new EventEmitter<string>();
 
     constructor(config: NgbModalConfig, private modalService: NgbModal) {
         // customize default values of modals used by this component tree
@@ -32,9 +32,7 @@ export class NgbdModalConfig {
     }
 
     confirm() {
-        if (this.action === 'reserved') {
-            this.doAction.emit(true);
-            this.modalService.dismissAll();
-        }
+        this.doAction.emit(this.action);
+        this.modalService.dismissAll();
     }
 }

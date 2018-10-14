@@ -1,8 +1,9 @@
 <h1 class="display-1">main works!</h1>
 <a href="/admin">Admin</a>
 <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
+
 <div class="row ml-0 mr-0">
-  <div class="col-6 table-responsive">
+  <div class="col-5 table-responsive buildingA pl-0">
     <table class="table-bordered" *ngIf="matrixData1">
       <tbody>
         <tr>
@@ -29,7 +30,8 @@
       </tbody>
     </table>
   </div>
-  <div class="col-6 table-responsive">
+
+  <div class="col-5 table-responsive buildingB pl-0">
     <table class="table-bordered" *ngIf="matrixData2">
       <tbody>
         <tr>
@@ -58,6 +60,31 @@
       </tbody>
     </table>
   </div>
+  <div class="col-2 table-responsive totalInfo">
+    <table class="total">
+      <tbody>
+        <tr>
+          <td class="mc-6"><label class="bold">Total</label></td>
+          <td class="mc-6"><label>{{total}}</label></td>
+        </tr>
+        <tr>
+          <td class="mc-6"><label class="bold">Available</label></td>
+          <td class="mc-6"><label>{{availableTotal}}</label></td>
+        </tr>
+        <tr>
+          <td class="mc-6"><label class="bold">Reserved</label></td>
+          <td class="mc-6"><label>{{reservedTotal}}</label></td>
+        </tr>
+        <tr>
+          <td class="mc-6"><label class="bold">Sold</label></td>
+          <td class="mc-6"><label>{{soldTotal}}</label></td>
+        </tr>
+        <tr>
+          <td class="mc-6"><label class="bold">Not Available</label></td>
+          <td class="mc-6"><label>{{notAvailableTotal}}</label></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<ngbd-modal-config #modal (doAction)="doReserve()"></ngbd-modal-config>
+<ngbd-modal-config #modal (doAction)="doReserve($event)"></ngbd-modal-config>
