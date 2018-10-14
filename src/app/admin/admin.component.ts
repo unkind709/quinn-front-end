@@ -32,34 +32,40 @@ export class AdminComponent implements OnInit {
         this.adminForm = this.fb.group({
             name: ['', Validators.required],
             email: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', Validators.required],
+            confirmPassword: ['', Validators.required]
         });
     }
 
-    // tryAdmin(value) {
-    //     this.authService.doAdmin(value)
-    //         .then(res => {
-    //             console.log(res);
-    //             this.trySaveUser(value.name)
-    //             this.errorMessage = "";
-    //             this.successMessage = "Your account has been created";
-    //         }, err => {
-    //             console.log(err);
-    //             this.errorMessage = err.message;
-    //             this.successMessage = "";
-    //         })
-    // }
+    tryRegister(value) {        
+        if (value.password === value.confirmPassword) {
+            this.authService.doRegister(value)
+                .then(res => {
+                    console.log(res);
+                    this.trySaveUser(value.name)
+                    this.errorMessage = "";
+                    this.successMessage = "Your account has been created";
+                }, err => {
+                    console.log(err);
+                    this.errorMessage = err.message;
+                    this.successMessage = "";
+                })
+        } else {
+            this.errorMessage = "Password field doesn't match";
+            this.successMessage = "";
+        }
+    }
 
-    // trySaveUser(name) {
-    //     this.userService.saveUser(name)
-    //         .then(res => {
-    //             console.log(res);
-    //             this.router.navigate(['/main']);
-    //             this.errorMessage = "";
-    //         }, err => {
-    //             console.log(err);
-    //             this.errorMessage = err.message;
-    //             this.successMessage = "";
-    //         })
-    // }
+    trySaveUser(name) {
+        this.userService.saveUser(name)
+            .then(res => {
+                console.log(res);
+                this.router.navigate(['/main']);
+                this.errorMessage = "";
+            }, err => {
+                console.log(err);
+                this.errorMessage = err.message;
+                this.successMessage = "";
+            })
+    }
 }
