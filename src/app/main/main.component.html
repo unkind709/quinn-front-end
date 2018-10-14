@@ -17,9 +17,9 @@
           <td class="room-sm no-border"></td>
         </tr>
         <tr *ngFor="let floor of buildA">
-          <td *ngFor="let matrix of matrixData1[floor.name]" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
+          <td *ngFor="let matrix of matrixData1[floor.name]; let i = index" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
             class="text-center" [ngClass]="{'room-md': matrix['room-detail'].merge !=='xy', 'room-lg':  matrix['room-detail'].merge ==='xy', 'reserved': matrix.status === 'reserved'}"
-            (click)="toggleReserveA(matrix['room-detail'].room, floor.name)">
+            (click)="toggleReserve(matrix.diagram, floor.name, i)">
             {{matrix['room-detail'].room}}<br />
             {{matrix['room-detail'].space | number:'0.2-2'}} m2
           </td>
@@ -44,9 +44,9 @@
         </tr>
         <tr *ngFor="let floor of buildA">
           <td *ngIf="floor.floor > 24" colspan="6" class="no-border"></td>
-          <td *ngFor="let matrix of matrixData2[floor.name]" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
+          <td *ngFor="let matrix of matrixData2[floor.name]; let i = index" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
             class="text-center" [ngClass]="{'room-md': matrix['room-detail'].merge !=='xy', 'room-lg':  matrix['room-detail'].merge ==='xy', 'reserved': matrix.status === 'reserved'}"
-            (click)="toggleReserveB(matrix['room-detail'].room, floor.name)">
+            (click)="toggleReserve(matrix.diagram, floor.name, i)">
             {{matrix['room-detail'].room}}<br />
             {{matrix['room-detail'].space | number:'0.2-2'}} m2
           </td>
