@@ -25,7 +25,7 @@ import { MatrixService } from './core/matrix.service';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    // AdminComponent,
+    AdminComponent,
     PageNotFoundComponent,
     MainComponent
   ],
