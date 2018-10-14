@@ -66,12 +66,14 @@ export class UserService {
     })
   }
 
-  getPermission(uid) {
+  getUserDetail(uid) {
     return new Promise<any>((resolve, reject) => {
       let user = firebase.database().ref('users/' + uid)
       user.once('value').then(res => {
+        let name = res.child('name').val();
         let permission = res.child('permission').val();
-        resolve(permission);
+        let group = res.child('group').val();
+        resolve({name, permission, group});
       }, err => {
         reject(err);
       });
