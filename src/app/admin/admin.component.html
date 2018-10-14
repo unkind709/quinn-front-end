@@ -6,15 +6,31 @@
                     <h2 class="text-center mt-4">Quinn-Admin</h2>
                     <div class="card-body mb-4">
                         <form [formGroup]="adminForm">
-                            <div class="form-group">
-                                <div class="text-center"> Create an account </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="text-center"> Set permission </div>                                
-                            </div>
-                            <div class="form-group">
-                                <div class="text-center"> Delete account </div>                                
-                            </div>
+                            <ngb-tabset [justify]="currentJustify">
+                                <ngb-tab title="Create an account">
+                                    <ng-template ngbTabContent>
+                                        <p>Create an account.</p>
+                                    </ng-template>
+                                </ngb-tab>
+
+                                <ngb-tab title="Set permission">
+                                    <ng-template ngbTabContent>
+                                        <p>Set permission.</p>
+                                    </ng-template>
+                                </ngb-tab>
+
+                                <ngb-tab title="Delete account">
+                                    <ng-template ngbTabContent>
+                                        <p>Delete account.</p>
+                                    </ng-template>
+                                </ngb-tab>
+
+                                <ngb-tab title="Log">
+                                    <ng-template ngbTabContent>
+                                        <p>Manage Log.</p>
+                                    </ng-template>
+                                </ngb-tab>
+                            </ngb-tabset>                            
                         </form>
                     </div>
                 </div>

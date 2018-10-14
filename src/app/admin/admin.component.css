@@ -23,7 +23,7 @@
 }
 
 .maxsize {
-  max-width: 544px;
+  max-width: -webkit-fill-available;
   margin: auto;
 }
 
@@ -58,4 +58,8 @@ button:hover {
   color: white;
   border: 4px solid white;
   border-radius: 15px;
+}
+
+a{
+  color: white;
 }
