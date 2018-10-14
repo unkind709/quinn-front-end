@@ -44,7 +44,7 @@ export class UserService {
   saveUser(name) {
     return new Promise<any>((resolve, reject) => {
       var permissionDefault = 0
-      var groupDefault = "viewer"
+      var groupDefault = "anonymous"
       var uid = this.getUserUid();
       var user = firebase.database().ref('users/' + uid).set({
         group: groupDefault,
