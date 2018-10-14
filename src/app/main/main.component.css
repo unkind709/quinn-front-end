@@ -38,6 +38,37 @@
 }
 
 .total {
+  margin-top: 20%;
   background-color: rgb(201, 196, 193);
   border: 20px solid rgb(201, 196, 193);
+}
+
+.logo {
+  height:30%;
+}
+
+.logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+diagram {
+  height:30%;
+}
+
+.diagram img {
+  max-width: 100%;
+  height: auto;
+}
+
+.totalInfo {
+  zoom: 2;
+}
+
+.sum {
+  text-align: right;
+}
+
+.bold {
+  font-weight: bold;
 }
