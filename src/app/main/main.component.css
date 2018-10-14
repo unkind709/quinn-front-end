@@ -1,29 +1,30 @@
 table {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .room-sm {
-  width: 70px;
-  height: 60px;
+  width: 40px;
+  height: 30px;
   cursor: pointer;
 }
 
 .room-md {
-  width: 110px;
-  height: 60px;
-  padding: 10px;
+  width: 80px;
+  height: 30px;
+  padding: 5px;
   cursor: pointer;
 }
 
 .room-lg {
-  width: 220px;
-  height: 120px;
-  padding: 10px;
+  width: 120px;
+  height: 70px;
+  padding: 5px;
   cursor: pointer;
 }
 
 .no-border {
   border: 0px;
+  height: 0px !important;
   cursor: default;
 }
 
@@ -49,7 +50,7 @@ table {
 }
 
 .logo {
-  height: 30%;
+  height: 20%;
 }
 
 .logo img {
@@ -80,32 +81,32 @@ diagram {
 
 .box-available {
   background-color: #ffffff;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   vertical-align: middle;
   display: inline-block;
 }
 
 .box-reserved {
   background-color: #ffc107;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   vertical-align: middle;
   display: inline-block;
 }
 
 .box-sold {
   background-color: red;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   vertical-align: middle;
   display: inline-block;
 }
 
 .box-not-available {
   background-color: black;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   vertical-align: middle;
   display: inline-block;
 }
@@ -117,4 +118,8 @@ diagram {
 
 .margin-table {
   margin-bottom: 70px;
+}
+
+.float-right {
+  float: right;
 }

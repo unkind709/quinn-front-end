@@ -15,6 +15,7 @@ export class AdminComponent implements OnInit {
     adminForm: FormGroup;
     errorMessage: string = '';
     successMessage: string = '';
+    currentJustify: string = '';
 
     constructor(
         public authService: AuthService,
