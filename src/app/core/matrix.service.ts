@@ -21,9 +21,9 @@ export class MatrixService {
         return this.matrixData;
     }
 
-    reserve() {
+    reserve(building, floor, room) {
         return new Promise<any>((resolve, reject) => {
-            firebase.database().ref(this.dbPath + '/diagram-a/' + 'floor-31/' + '1/').update({
+            firebase.database().ref(this.dbPath + '/' + building + '/' + floor + '/' + room + '/').update({
                 status: 'reserved'
             }).then(res => {
                 resolve(res)

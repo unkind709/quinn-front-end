@@ -133,7 +133,6 @@ export class MainComponent implements OnInit {
     ).subscribe(res => {
       this.matrixData1 = res[0];
       this.matrixData2 = res[1];
-      console.log(res[1]);
     });
   }
 
@@ -158,34 +157,17 @@ export class MainComponent implements OnInit {
     }
   }
 
-  toggleReserveA(room: string, floor: string) {
-    this.matrixService.reserve().then(res => {
+  toggleReserve(building: string, room: string, floor: number) {
+    console.log(building, room, floor);
+    if (building === 'A') {
+      building = 'diagram-a';
+    } else if (building === 'B') {
+      building = 'diagram-b';
+    }
+    this.matrixService.reserve(building, room, floor).then(res => {
       console.log(res);
     }, err => {
       console.log(err);
     });
-    // this.matrixData1[floor].map((element) => {
-    //   if (element['room-detail'].room === room) {
-    //     if (element.status === 'available') {
-    //       element.status = 'reserved';
-    //     } else {
-    //       element.status = 'available';
-    //     }
-    //   }
-    // });
-  }
-
-  toggleReserveB(room: string, floor: string) {
-    console.log(room, floor);
-    this.matrixData2[floor].map((element) => {
-      if (element['room-detail'].room === room) {
-        if (element.status === 'available') {
-          element.status = 'reserved';
-        } else {
-          element.status = 'available';
-        }
-      }
-    });
-    console.log(this.matrixData2[floor]);
   }
 }
