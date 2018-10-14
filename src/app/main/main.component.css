@@ -4,20 +4,20 @@
 
 .room-sm {
   width: 40px;
-  height: 10px;
+  height: 40px;
   cursor: pointer;
 }
 
 .room-md {
   width: 60px;
-  height: 10px;
+  height: 40px;
   padding: 3px;
   cursor: pointer;
 }
 
 .room-lg {
   width: 60px;
-  height: 60px;
+  height: 80px;
   padding: 3px;
   cursor: pointer;
 }
@@ -43,14 +43,14 @@
 
 .total {
   margin: auto;
-  margin-top: 20%;
+  margin-top: 10%;
   font-size: 10px;
   background-color: #C9C4C1;
   border: 10px solid #C9C4C1;
 }
 
 .logo {
-  height: 20%;
+  height: 15%;
 }
 
 .logo img {
@@ -125,6 +125,14 @@ diagram {
   float: none;
 }
 
-.diagram-desc {
-  text-align: center;
+.floor-pointer {
+  height: 40px;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+}
+
+.floor-space {
+  height: 40px;
+  border: none;
 }

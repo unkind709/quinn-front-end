@@ -119,6 +119,43 @@ export class MainComponent implements OnInit {
     },
   ];
 
+  floorData = [
+    { name: 'ROOF'},
+    { name: 'MEZZANINE'},
+    { name: '31th'},
+    { name: '30th'},
+    { name: '29th'},
+    { name: '28th'},
+    { name: '27th'},
+    { name: '26th'},
+    { name: '25th'},
+    { name: '24th'},
+    { name: '23rd'},
+    { name: '22nd'},
+    { name: '21st'},
+    { name: '20th'},
+    { name: '19th'},
+    { name: '18th'},
+    { name: '17th'},
+    { name: '16th'},
+    { name: '15th'},
+    { name: '14th'},
+    { name: '13th'},
+    { name: '12th'},
+    { name: '11th'},
+    { name: '10th'},
+    { name: '9th'},
+    { name: '8th'},
+    { name: '7th'},
+    { name: ''},
+    { name: '6th'},
+    { name: '5th'},
+    { name: '4th'},
+    { name: '3rd'},
+    { name: '2nd'},
+    { name: ''},
+    { name: '1st'},
+  ]
   building: string;
   room: string;
   floor: number;

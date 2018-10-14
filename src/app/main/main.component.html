@@ -20,7 +20,20 @@
 </div> -->
 
 <div class="row ml-0 mr-0 margin-table">
-  <div class="col-5 table-responsive">
+  <div class="col-2 table-responsive">
+    <table class="table-bordered matrix float-right" width="100">
+      <tr>
+        <td class="room-md no-border"></td>
+      </tr>
+      <tbody>
+        <tr *ngFor="let floor of floorData">
+          <td class="floor-pointer" *ngIf="!!floor.name">{{floor.name}} FLOOR</td>
+          <td class="floor-space" *ngIf="!floor.name"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4 table-responsive">
     <table class="table-bordered matrix float-center" *ngIf="matrixData1" width="520">
       <tbody>
         <tr>
@@ -33,6 +46,9 @@
           <td class="room-md no-border"></td>
           <td class="room-md no-border"></td>
           <td class="room-sm no-border"></td>
+        </tr>
+        <tr>
+          <td class="floor-space"></td>
         </tr>
         <tr *ngFor="let floor of buildA">
           <td *ngFor="let matrix of matrixData1[floor.name]; let i = index" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
@@ -48,7 +64,7 @@
     </table>
   </div>
 
-  <div class="col-5 table-responsive pl-0">
+  <div class="col-4 table-responsive pl-0">
     <table class="table-bordered matrix float-center" *ngIf="matrixData2" width="560">
       <tbody>
         <tr>
@@ -62,6 +78,9 @@
           <td class="room-md no-border"></td>
           <td class="room-md no-border"></td>
           <td class="room-md no-border"></td>
+        </tr>
+        <tr>
+          <td class="floor-space"></td>
         </tr>
         <tr *ngFor="let floor of buildA">
           <td *ngIf="floor.floor > 24" colspan="6" class="no-border"></td>
@@ -77,7 +96,7 @@
       </tbody>
     </table>
   </div>
-  <div class="col-2 table-responsive">
+  <div class="col-2">
     <div class="logo">
       <img src="../../assets/img/logo.png">
     </div>
@@ -114,11 +133,11 @@
 </div>
 <footer class="footer-diagram">
   <div class="row">
-    <div class="col-5">
-      <div class="diagram-desc">UNIT DIAGRAM A</div>
+    <div class="col-4 offset-2">
+      <div class="text-center">UNIT DIAGRAM A</div>
     </div>
-    <div class="col-5">
-      <div class="diagram-desc">UNIT DIAGRAM B</div>
+    <div class="col-4">
+      <div class="text-center">UNIT DIAGRAM B</div>
     </div>
   </div>
 </footer>
