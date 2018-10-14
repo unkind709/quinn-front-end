@@ -120,6 +120,11 @@ diagram {
   margin-bottom: 70px;
 }
 
-.float-right {
-  float: right;
+.float-center {
+  margin: auto;
+  float: none;
+}
+
+.diagram-desc {
+  text-align: center;
 }
