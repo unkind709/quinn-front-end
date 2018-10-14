@@ -77,3 +77,44 @@ diagram {
 .bold {
   font-weight: bold;
 }
+
+.box-available {
+  background-color: #ffffff;
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.box-reserved {
+  background-color: #ffc107;
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.box-sold {
+  background-color: red;
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.box-not-available {
+  background-color: black;
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.box-desc {
+  color: #efefef;
+  display: inline;
+}
+
+.margin-table {
+  margin-bottom: 70px;
+}

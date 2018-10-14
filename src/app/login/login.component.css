@@ -80,6 +80,19 @@ button:active {
   border: 4px solid #E1B77E;
 }
 
+input:visited {
+  border: 1px solid #E1B77E;
+}
+
+input:focus {
+  box-shadow: none;
+  border: 1px solid #E1B77E;
+}
+
+input:active {
+  border: 1px solid #E1B77E;
+}
+
 a {
   color: #E1B77E;
 }
