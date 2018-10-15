@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 import { AuthService } from '../core/auth.service';
@@ -120,33 +121,33 @@ export class MainComponent implements OnInit {
   ];
 
   floorData = [
-    { name: 'ROOF'},
-    { name: 'MEZZANINE'},
-    { name: '31th'},
-    { name: '30th'},
-    { name: '29th'},
-    { name: '28th'},
-    { name: '27th'},
-    { name: '26th'},
-    { name: '25th'},
-    { name: '24th'},
-    { name: '23rd'},
-    { name: '22nd'},
-    { name: '21st'},
-    { name: '20th'},
-    { name: '19th'},
-    { name: '18th'},
-    { name: '17th'},
-    { name: '16th'},
-    { name: '15th'},
-    { name: '14th'},
-    { name: '13th'},
-    { name: '12th'},
-    { name: '11th'},
-    { name: '10th'},
-    { name: '9th'},
-    { name: '8th'},
-    { name: '7th'},
+    { name: 'ROOF' },
+    { name: 'MEZZANINE' },
+    { name: '31th' },
+    { name: '30th' },
+    { name: '29th' },
+    { name: '28th' },
+    { name: '27th' },
+    { name: '26th' },
+    { name: '25th' },
+    { name: '24th' },
+    { name: '23rd' },
+    { name: '22nd' },
+    { name: '21st' },
+    { name: '20th' },
+    { name: '19th' },
+    { name: '18th' },
+    { name: '17th' },
+    { name: '16th' },
+    { name: '15th' },
+    { name: '14th' },
+    { name: '13th' },
+    { name: '12th' },
+    { name: '11th' },
+    { name: '10th' },
+    { name: '9th' },
+    { name: '8th' },
+    { name: '7th' },
     // { name: ''},
     // { name: '6th'},
     // { name: '5th'},
@@ -176,6 +177,7 @@ export class MainComponent implements OnInit {
   constructor(public authService: AuthService,
     public matrixService: MatrixService,
     public userService: UserService,
+    private router: Router,
     private location: Location) { }
 
   ngOnInit() {
@@ -196,6 +198,7 @@ export class MainComponent implements OnInit {
           console.log(err2);
         });
     }, (err1) => {
+      this.router.navigate(['login']);
       console.log(err1);
     });
   }
@@ -216,8 +219,9 @@ export class MainComponent implements OnInit {
   logout() {
     this.authService.doLogout()
       .then((res) => {
-        this.location.back();
+        this.router.navigate(['login']);
       }, (error) => {
+        this.router.navigate(['login']);
         console.log("Logout error", error);
       });
   }
@@ -235,7 +239,7 @@ export class MainComponent implements OnInit {
   }
 
   openModal(message, type, action) {
-    this.modal.open(message, type, action);
+    this.modal.open(message, type, action, this.userModel.permission);
   }
 
   toggleReserve(roomdata: any, room: string, floor: number) {
@@ -250,18 +254,18 @@ export class MainComponent implements OnInit {
     this.floor = floor;
 
     //checkPermission
-    if (roomdata.status === 'available' && this.userModel.permission > 1) {
+    if (roomdata.status === 'available' && this.userModel.permission === 2) {
       this.openModal("Reserve?", 'prompt', roomdata.status);
-    } else if (roomdata.status === 'available' && this.userModel.permission <= 1) {
-      this.openModal("Can't reserve.", 'error', '');
-    } else if (roomdata.status === 'reserved' && this.userModel.permission > 2) {
+    } else if (roomdata.status === 'reserved' && this.userModel.permission === 2) {
+      this.openModal("Sold?", 'prompt', roomdata.status);
+    } else if (roomdata.status === 'reserved' && (this.userModel.permission === 3 || this.userModel.permission === 4)) {
       this.openModal("Sold or cancel reserve?", 'prompt', roomdata.status);
-    } else if (roomdata.status === 'reserved' && this.userModel.permission <= 2) {
-      this.openModal("Can't sold or cancel reserve.", 'error', '');
-    } else if (roomdata.status === 'sold' && this.userModel.permission > 3) {
+    } else if (roomdata.status === 'sold' && this.userModel.permission > 2) {
       this.openModal("Cancel sold?", 'prompt', roomdata.status);
-    } else if (roomdata.status === 'sold' && this.userModel.permission <= 3) {
-      this.openModal("Can't cancel sold.", 'error', '');
+    } else if (roomdata.status === 'not-available' && this.userModel.permission > 2) {
+      this.openModal("Available?", 'prompt', roomdata.status);
+    } else if (roomdata.status === 'available' && (this.userModel.permission === 3 || this.userModel.permission === 4)) {
+      this.openModal("Reserve or not-available?", 'prompt', roomdata.status);
     }
   }
 

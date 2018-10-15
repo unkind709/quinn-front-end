@@ -12,6 +12,7 @@ export class NgbdModalConfig {
     @ViewChild('prompt') prompt;
     action: string;
     message: string;
+    permission: number;
     @Output() doAction = new EventEmitter<string>();
 
     constructor(config: NgbModalConfig, private modalService: NgbModal) {
@@ -20,15 +21,25 @@ export class NgbdModalConfig {
         config.keyboard = false;
     }
 
-    open(message, type, action) {
+    open(message, type, action, permission) {
         this.message = message;
         this.action = action;
+        this.permission = permission;
         if (type == 'prompt') {
             this.modalService.open(this.prompt, { centered: true });
         }
         else if (type === 'error') {
             this.modalService.open(this.error, { centered: true });
         }
+    }
+
+    available() {
+        if (this.action === 'available') {
+            this.doAction.emit('not-available');
+        } else if (this.action === 'not-available') {
+            this.doAction.emit('available');
+        }
+        this.modalService.dismissAll();
     }
 
     confirm() {

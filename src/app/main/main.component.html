@@ -157,9 +157,8 @@
           </div>
         </div>
       </div>
-      <a class="box-desc" style="position: absolute; bottom: 0; right: 20px; z-index: 1; text-decoration: none;" href
-        (click)="logout()">Logout</a>
-      <a class="box-desc" style="position: absolute; bottom: 0; right: 90px; z-index: 1; text-decoration: none;" href="/admin">Admin</a>
+      <a class="box-desc admin-button" *ngIf="userModel.permission === 4" href="/admin">Admin</a>
+      <a class="box-desc logout-button" href (click)="logout()">Logout</a>
     </div>
   </div>
 </footer>

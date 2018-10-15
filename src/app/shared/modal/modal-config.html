@@ -19,7 +19,11 @@
   <div class="modal-footer" style="margin:auto; border: none;">
     <button type="button" class="btn btn-primary" (click)="confirm()" *ngIf="action === 'available'">Reserve</button>
     <button type="button" class="btn btn-primary" (click)="confirm()" *ngIf="action === 'reserved'">Sold</button>
-    <button type="button" class="btn btn-danger" (click)="cancel()" *ngIf="action === 'reserved'">Cancel reserved</button>
-    <button type="button" class="btn btn-danger" (click)="cancel()" *ngIf="action === 'sold'">Cancel sold</button>
+    <button type="button" class="btn btn-default" (click)="available()" *ngIf="action === 'available' && permission > 2">Not-Available</button>
+    <button type="button" class="btn btn-primary" (click)="available()" *ngIf="action === 'not-available' && permission > 2">Available</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()" *ngIf="action === 'reserved' && permission > 2">Cancel
+      reserved</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()" *ngIf="action === 'sold' && permission > 2">Cancel
+      sold</button>
   </div>
 </ng-template>

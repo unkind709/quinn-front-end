@@ -138,6 +138,22 @@ diagram {
   border: none;
 }
 
+.admin-button {
+  position: absolute;
+  bottom: 0;
+  right: 90px;
+  z-index: 1;
+  text-decoration: none;
+}
+
+.logout-button {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  z-index: 1;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 1140px) {
   .matrix {
     font-size: 6px;
