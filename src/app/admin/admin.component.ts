@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit {
     currentJustify: string = '';
     userList = [];
     userUid: string = '';
+    userRes: Array<any>;
 
     nameDropdown = "Name";
     groupDropdown = "Group";
@@ -84,15 +85,16 @@ export class AdminComponent implements OnInit {
                 for (var x in res) {
                     res.hasOwnProperty(x) && this.userList.push(res[x])
                 }
-                console.log(this.userList);
+                this.userRes = res
             }, err => {
                 console.log(err);
             })
     }
 
-    onChangeNameDropdown(name, uid) {
+    onChangeNameDropdown(name) {
         this.nameDropdown = name;
-        this.userUid = uid;
+        this.getUserUid(name);
+        this.clearMessage();
     }
 
     onChangeGroupDropdown(group) {
@@ -103,9 +105,28 @@ export class AdminComponent implements OnInit {
         this.userService.updatePermission(this.userUid, this.groupDropdown)
             .then(() => {
                 this.setPermissionSuccessMessage = "Update permission success!";
-            }, err => { 
-                this.setPermissionErrorMessage = "Update permission failed!";
-                console.log(err)
+            }, (error) => {
+                this.setPermissionErrorMessage = error;
             })
+        this.clearDropdown();
+    }
+
+    getUserUid(name) {
+        Object.keys(this.userRes).forEach(element => {
+            if (name === this.userRes[element].name) {
+                this.userUid = element;
+            }
+        })
+    }
+
+    clearDropdown() {
+        this.userUid = '';
+        this.nameDropdown = "Name";
+        this.groupDropdown = "Group";
+    }
+
+    clearMessage() {
+        this.setPermissionErrorMessage = '';
+        this.setPermissionSuccessMessage = '';
     }
 }

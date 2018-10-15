@@ -96,20 +96,36 @@ export class UserService {
   }
 
   updatePermission(uid, group) {
-    console.log("uid : " + uid);
-    if (uid !== null && uid !== "" && uid !== undefined) {
-      return new Promise<any>((resolve, reject) => {
-        let user = firebase.database().ref('users/' + uid)
-        user.update({
-          group: group,
-          permission: this.getPermissionFromGroup(group)
-        }).then(() => {
-          resolve(console.log("update success"));
-        }).catch((error) => {
-          reject(error)
-        })
-      });
-    }
+    return new Promise<any>((resolve, reject) => {
+      if (this.isUidEmpty(uid)) {
+        reject("Not found user.")
+        return;
+      }
+
+      if (this.isGroupEmpty(group)) {
+        reject("Please select group.")
+        return;
+      }
+
+      let groupMap = this.mapGroup(group)
+      let user = firebase.database().ref('users/' + uid)
+      user.update({
+        group: groupMap,
+        permission: this.getPermissionFromGroup(groupMap)
+      }).then(() => {
+        resolve(console.log("update permission success"));
+      }).catch((error) => {
+        reject(error)
+      })
+    });
+  }
+
+  isUidEmpty(uid) {
+    return (uid === null || uid === "" || uid === undefined);
+  }
+
+  isGroupEmpty(group) {
+    return (group === null || group === "" || group === undefined || group === "Group");
   }
 
   getPermissionFromGroup(group) {
@@ -119,6 +135,16 @@ export class UserService {
       case "sale": { return 2; break; }
       case "viewer": { return 1; break; }
       default: { return 0; }
+    }
+  }
+
+  mapGroup(group) {
+    switch (group) {
+      case "Admin": { return "admin"; break; }
+      case "Sale Lead": { return "sale-lead"; break; }
+      case "Sale": { return "sale"; break; }
+      case "Viewer": { return "viewer"; break; }
+      default: { return "annonymous"; }
     }
   }
 }

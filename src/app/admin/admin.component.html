@@ -47,7 +47,7 @@
                                                     <button class="btn btn-outline-primary" id="nameDropdown"
                                                         ngbDropdownToggle>{{nameDropdown}}</button>
                                                     <div ngbDropdownMenu aria-labelledby="nameDropdown">
-                                                        <button class="dropdown-item" (click)="onChangeNameDropdown(users.name, users.uid)"
+                                                        <button class="dropdown-item" (click)="onChangeNameDropdown(users.name)"
                                                             *ngFor="let users of userList">{{users.name}}</button>
                                                     </div>
                                                 </div>
@@ -62,12 +62,12 @@
                                                     <button class="btn btn-outline-primary" id="groupDropdown"
                                                         ngbDropdownToggle>{{groupDropdown}}</button>
                                                     <div ngbDropdownMenu aria-labelledby="groupDropdown">
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('admin')">Admin</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('sale-lead')">Sale
+                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Admin')">Admin</button>
+                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Sale Lead')">Sale
                                                             Lead</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('sale')">Sale</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('viwer')">Viwer</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('annonymous')">Annonymous</button>
+                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Sale')">Sale</button>
+                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Viewer')">Viewer</button>
+                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Annonymous')">Annonymous</button>
                                                     </div>
                                                 </div>
                                             </div>
