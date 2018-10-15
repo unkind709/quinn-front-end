@@ -15,8 +15,11 @@ export class AdminComponent implements OnInit {
     adminForm: FormGroup;
     errorMessage: string = '';
     successMessage: string = '';
+    setPermissionSuccessMessage: string = '';
+    setPermissionErrorMessage: string = '';
     currentJustify: string = '';
     userList = [];
+    userUid: string = '';
 
     nameDropdown = "Name";
     groupDropdown = "Group";
@@ -87,15 +90,22 @@ export class AdminComponent implements OnInit {
             })
     }
 
-    onChangeNameDropdown(name) {
+    onChangeNameDropdown(name, uid) {
         this.nameDropdown = name;
+        this.userUid = uid;
     }
-    
+
     onChangeGroupDropdown(group) {
         this.groupDropdown = group;
     }
 
     onClickSaveButton() {
-        
+        this.userService.updatePermission(this.userUid, this.groupDropdown)
+            .then(() => {
+                this.setPermissionSuccessMessage = "Update permission success!";
+            }, err => { 
+                this.setPermissionErrorMessage = "Update permission failed!";
+                console.log(err)
+            })
     }
 }

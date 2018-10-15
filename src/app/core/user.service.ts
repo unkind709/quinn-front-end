@@ -94,4 +94,31 @@ export class UserService {
       });
     });
   }
+
+  updatePermission(uid, group) {
+    console.log("uid : " + uid);
+    if (uid !== null && uid !== "" && uid !== undefined) {
+      return new Promise<any>((resolve, reject) => {
+        let user = firebase.database().ref('users/' + uid)
+        user.update({
+          group: group,
+          permission: this.getPermissionFromGroup(group)
+        }).then(() => {
+          resolve(console.log("update success"));
+        }).catch((error) => {
+          reject(error)
+        })
+      });
+    }
+  }
+
+  getPermissionFromGroup(group) {
+    switch (group) {
+      case "admin": { return 4; break; }
+      case "sale-lead": { return 3; break; }
+      case "sale": { return 2; break; }
+      case "viewer": { return 1; break; }
+      default: { return 0; }
+    }
+  }
 }
