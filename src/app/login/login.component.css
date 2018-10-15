@@ -170,3 +170,15 @@ a:hover {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .checkmark {
+    left: 33%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .checkmark {
+    left: 34%;
+  }
+}
