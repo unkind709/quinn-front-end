@@ -1,5 +1,5 @@
 .matrix {
-  font-size: 12px;
+  font-size: 8px;
 }
 
 .matrix-floor {
@@ -7,21 +7,21 @@
 }
 
 .room-sm {
-  width: 40px;
-  height: 39px;
+  width: 30px;
+  height: 36px;
   cursor: pointer;
 }
 
 .room-md {
-  width: 60px;
-  height: 39px;
+  width: 55px;
+  height: 36px;
   padding: 0px;
   cursor: pointer;
 }
 
 .room-lg {
-  width: 60px;
-  height: 78px;
+  width: 55px;
+  height: 72px;
   padding: 0px;
   cursor: pointer;
 }
@@ -129,15 +129,15 @@ diagram {
 }
 
 .floor-pointer {
-  height: 39px;
-  padding-top: 15px;
+  height: 36px;
+  padding-top: 10px;
   border-right: none;
   border-top: none;
   border-left: none;
 }
 
 .floor-space {
-  height: 39px;
+  height: 36px;
   border: none;
 }
 
