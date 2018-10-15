@@ -13,7 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 import { MainComponent } from './main/main.component';
 
 import { AuthGuard } from './core/auth.guard';
