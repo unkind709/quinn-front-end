@@ -147,15 +147,15 @@ export class MainComponent implements OnInit {
     { name: '9th'},
     { name: '8th'},
     { name: '7th'},
-    { name: ''},
-    { name: '6th'},
-    { name: '5th'},
-    { name: '4th'},
-    { name: '3rd'},
-    { name: '2nd'},
-    { name: ''},
-    { name: '1st'},
-  ]
+    // { name: ''},
+    // { name: '6th'},
+    // { name: '5th'},
+    // { name: '4th'},
+    // { name: '3rd'},
+    // { name: '2nd'},
+    // { name: ''},
+    // { name: '1st'}
+  ];
   building: string;
   room: string;
   floor: number;
