@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../core/auth.service'
 import { UserService } from '../core/user.service'
+import { CoreService } from '../core/core.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public userService: UserService,
+    public coreService: CoreService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.generateTime()
+    this.coreService.generateTime()
   }
 
   createForm() {
@@ -48,7 +50,6 @@ export class LoginComponent implements OnInit {
 
   prepareLogUser() {
     var uid = this.userService.getUserUid()
-    console.log(uid);
     this.userService.getUserName(uid)
       .then(res => {
         this.tryLogUser(uid, res)

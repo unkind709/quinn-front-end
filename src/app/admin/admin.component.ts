@@ -25,6 +25,9 @@ export class AdminComponent implements OnInit {
     nameDropdown = "Name";
     groupDropdown = "Group";
 
+    adminName = '';
+    userName = '';
+
     constructor(
         public authService: AuthService,
         public userService: UserService,
@@ -105,11 +108,15 @@ export class AdminComponent implements OnInit {
     onClickSaveButton() {
         this.userService.updatePermission(this.userUid, this.groupDropdown)
             .then(() => {
+                console.log("this.useruid1 : " + this.userUid)
                 this.setPermissionSuccessMessage = "Update permission success!";
+                this.tryLogSetPermission(this.userUid, this.groupDropdown);
+                console.log("this.useruid2 : " + this.userUid)
+                this.clearDropdown();  /* Must write here because uid will clear too fast */
             }, (error) => {
                 this.setPermissionErrorMessage = error;
+                this.clearDropdown(); /* Must write here because uid will clear too fast */
             })
-        this.clearDropdown();
     }
 
     getUserUid(name) {
@@ -129,5 +136,44 @@ export class AdminComponent implements OnInit {
     clearMessage() {
         this.setPermissionErrorMessage = '';
         this.setPermissionSuccessMessage = '';
+    }
+
+    prepareAdminName(adminUid) {
+        this.userService.getUserName(adminUid)
+            .then(res => {
+                console.log(res)
+                this.adminName = res;
+                return res;
+            }, err => {
+                console.log(err)
+            })
+    }
+
+    prepareUserName(userUid) {
+        this.userService.getUserName(userUid)
+            .then(res => {
+                console.log(res)
+                this.userName = res.val();
+                return res.val();
+            }, err => {
+                console.log(err)
+            })
+    }
+
+    tryLogSetPermission(uid, group) {
+        let adminUid = this.userService.getUserUid();
+        let adminName = this.prepareAdminName(adminUid);
+        let userName = this.prepareUserName(uid);
+        console.log("uid : " + uid);
+        console.log("group : " + group);
+        console.log("adminUid : " + adminUid);
+        console.log("adminName : " + this.adminName);
+        console.log("userName : " + this.userName);
+        this.userService.logSetPermission(this.adminName, group, this.userName, uid)
+            .then(res => {
+                console.log("Log Set Permission Success");
+            }, err => {
+                console.log(err);
+            })
     }
 }

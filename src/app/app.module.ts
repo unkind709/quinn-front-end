@@ -17,6 +17,7 @@ import { environment } from '../environments/environment.prod';
 import { MainComponent } from './main/main.component';
 
 import { AuthGuard } from './core/auth.guard';
+import { CoreService } from './core/core.service';
 import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 import { MatrixService } from './core/matrix.service';
@@ -44,7 +45,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     AngularFirestoreModule,
     AngularFireDatabaseModule
   ],
-  providers: [AuthService, UserService, AuthGuard, MatrixService],
+  providers: [CoreService, AuthService, UserService, AuthGuard, MatrixService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

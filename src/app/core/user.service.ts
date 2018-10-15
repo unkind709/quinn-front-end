@@ -3,6 +3,8 @@ import 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
+import { CoreService } from "./core.service";
+import * as moment from 'moment';
 
 @Injectable()
 export class UserService {
@@ -12,7 +14,8 @@ export class UserService {
 
   constructor(
     public db: AngularFireDatabase,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public coreService: CoreService
   ) {
     this.matrixData = db.list(this.dbPath);
   }
@@ -146,5 +149,21 @@ export class UserService {
       case "Viewer": { return "viewer"; break; }
       default: { return "annonymous"; }
     }
+  }
+
+  logSetPermission(adminName, group, userName, uid) {
+    let groupMap = this.mapGroup(group)
+    return new Promise((resolve, reject) => {
+      var ref = firebase.database().ref("permission-log/" + this.coreService.generateTime())
+      ref.set({
+        created_by: adminName,
+        group: groupMap,
+        name: userName,
+        permission: this.getPermissionFromGroup(groupMap),
+        uid: uid
+      }).then(res => {
+        resolve(res);
+      }, err => reject(err))
+    })
   }
 }

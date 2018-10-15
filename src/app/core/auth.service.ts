@@ -4,12 +4,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import * as moment from 'moment';
 import { resolve } from "url";
+import { CoreService } from './core.service';
 
 @Injectable()
 export class AuthService {
 
   constructor(
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public coreService: CoreService,
   ) { }
 
   doFacebookLogin() {
@@ -86,14 +88,9 @@ export class AuthService {
     });
   }
 
-  generateTime() {
-    var keyTime = moment().format('YYMMDD-hhmmss');
-    return "QN" + keyTime;
-  }
-
   logUser(uid, userName) {
     return new Promise((resolve, reject) => {
-      var ref = firebase.database().ref("login-log/" + this.generateTime())
+      var ref = firebase.database().ref("login-log/" + this.coreService.generateTime())
       ref.set({
         created_date: moment().format('YYYY-MM-DD'),
         name: userName,
