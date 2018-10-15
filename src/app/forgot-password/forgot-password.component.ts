@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -12,6 +12,7 @@ import { AuthService } from '../core/auth.service'
 })
 export class ForgotPasswordComponent implements OnInit {
 
+  @ViewChild('modal') modal;
   resetForm: FormGroup;
   errorMessage: string;
 
@@ -34,11 +35,18 @@ export class ForgotPasswordComponent implements OnInit {
   resetpassword(email: string) {
     this.authService.resetPassword(email)
       .then(res => {
-        this.router.navigate(['/login']);
+        this.openModal("Please check your email for reset password.", 'error', '');
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
       });
   }
 
+  closeModal(value) {
+    this.router.navigate(['/login']);
+  }
+
+  openModal(message, type, action) {
+    this.modal.open(message, type, action, 0);
+  }
 }
