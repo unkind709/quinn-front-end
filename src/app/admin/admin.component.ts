@@ -99,6 +99,7 @@ export class AdminComponent implements OnInit {
 
     onChangeGroupDropdown(group) {
         this.groupDropdown = group;
+        this.clearMessage();
     }
 
     onClickSaveButton() {
