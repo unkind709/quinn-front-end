@@ -7,12 +7,14 @@ import { AdminComponent } from './admin/admin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from './core/auth.guard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'main', component: MainComponent },
+  { path: 'forgotpass', component: ForgotPasswordComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -198,7 +198,7 @@ export class MainComponent implements OnInit {
           console.log(err2);
         });
     }, (err1) => {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
       console.log(err1);
     });
   }
@@ -219,9 +219,9 @@ export class MainComponent implements OnInit {
   logout() {
     this.authService.doLogout()
       .then((res) => {
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
       }, (error) => {
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
         console.log("Logout error", error);
       });
   }

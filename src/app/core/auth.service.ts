@@ -3,6 +3,7 @@ import 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import * as moment from 'moment';
+import { resolve } from "url";
 
 @Injectable()
 export class AuthService {
@@ -101,5 +102,14 @@ export class AuthService {
         resolve(res);
       }, err => reject(err))
     })
+  }
+
+  resetPassword(email: string) {
+    return new Promise((resolve, reject) => {
+      let auth = firebase.auth();
+      auth.sendPasswordResetEmail(email)
+        .then(() => resolve("email sent"))
+        .catch((error) => reject(error))
+    });
   }
 }

@@ -170,10 +170,27 @@ a:hover {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+@media (max-width: 417px) {
+  .checkmark {
+    left: 26%;
+  }
+  .padding-login {
+    padding-top: 5vh;
+  }
+}
+
+@media (min-width: 418px) and (max-width: 575.98px) {
+  .checkmark {
+    left: 30%;
+  }
+  .padding-login {
+    padding-top: 5vh;
+  }
+}
 
 @media (min-width: 576px) and (max-width: 991.98px) {
   .checkmark {
-    left: 33%;
+    left: 32%;
   }
 }
 

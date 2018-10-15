@@ -21,6 +21,7 @@ import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 import { MatrixService } from './core/matrix.service';
 import { NgbdModalConfig } from './shared/modal/modal-config';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NgbdModalConfig } from './shared/modal/modal-config';
     AdminComponent,
     PageNotFoundComponent,
     MainComponent,
-    NgbdModalConfig
+    NgbdModalConfig,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
