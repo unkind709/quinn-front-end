@@ -153,8 +153,8 @@ export class AdminComponent implements OnInit {
         this.userService.getUserName(userUid)
             .then(res => {
                 console.log(res)
-                this.userName = res.val();
-                return res.val();
+                this.userName = res;
+                return res;
             }, err => {
                 console.log(err)
             })
