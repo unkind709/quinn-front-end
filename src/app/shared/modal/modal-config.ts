@@ -59,4 +59,9 @@ export class NgbdModalConfig {
         }
         this.modalService.dismissAll();
     }
+
+    close() {
+        this.doAction.emit('reset');
+        this.modalService.dismissAll();
+    }
 }

@@ -35,7 +35,7 @@ export class ForgotPasswordComponent implements OnInit {
   resetpassword(email: string) {
     this.authService.resetPassword(email)
       .then(res => {
-        this.openModal("Please check your email for reset password.", 'error', '');
+        this.openModal("Please check your email for reset password.", 'error', 'reset');
       }, err => {
         console.log(err);
         this.errorMessage = err.message;

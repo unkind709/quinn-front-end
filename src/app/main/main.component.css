@@ -1,30 +1,33 @@
 .matrix {
-  font-size: 8px;
+  font-size: 12px;
+}
+
+.matrix-floor {
+  font-size: 14px;
 }
 
 .room-sm {
   width: 40px;
-  height: 40px;
+  height: 39px;
   cursor: pointer;
 }
 
 .room-md {
   width: 60px;
-  height: 40px;
-  padding: 3px;
+  height: 39px;
+  padding: 0px;
   cursor: pointer;
 }
 
 .room-lg {
   width: 60px;
-  height: 80px;
-  padding: 3px;
+  height: 78px;
+  padding: 0px;
   cursor: pointer;
 }
 
 .no-border {
   border: 0px;
-  /* height: 0px !important; */
   cursor: default;
 }
 
@@ -126,15 +129,15 @@ diagram {
 }
 
 .floor-pointer {
-  height: 40px;
-  padding-top: 20px;
+  height: 39px;
+  padding-top: 15px;
   border-right: none;
   border-top: none;
   border-left: none;
 }
 
 .floor-space {
-  height: 40px;
+  height: 39px;
   border: none;
 }
 

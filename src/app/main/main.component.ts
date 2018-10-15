@@ -167,7 +167,6 @@ export class MainComponent implements OnInit {
     group: ''
   };
 
-
   total = 0;
   availableTotal = 0;
   reservedTotal = 0;

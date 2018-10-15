@@ -3,7 +3,8 @@
     <h1>{{message}}</h1>
   </div>
   <div class="modal-footer" style="margin:auto; border: none;">
-    <button type="button" class="btn btn-primary" (click)="d()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="close()" *ngIf="action === 'reset'">Close</button>
+    <button type="button" class="btn btn-primary" (click)="d()" *ngIf="action !== 'reset'">Close</button>
   </div>
 </ng-template>
 
