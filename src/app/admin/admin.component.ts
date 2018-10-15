@@ -16,6 +16,10 @@ export class AdminComponent implements OnInit {
     errorMessage: string = '';
     successMessage: string = '';
     currentJustify: string = '';
+    userList = [];
+
+    nameDropdown = "Name";
+    groupDropdown = "Group";
 
     constructor(
         public authService: AuthService,
@@ -27,6 +31,7 @@ export class AdminComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.tryGetAllUsers()
     }
 
     createForm() {
@@ -38,7 +43,7 @@ export class AdminComponent implements OnInit {
         });
     }
 
-    tryRegister(value) {        
+    tryRegister(value) {
         if (value.password === value.confirmPassword) {
             this.authService.doRegister(value)
                 .then(res => {
@@ -68,5 +73,29 @@ export class AdminComponent implements OnInit {
                 this.errorMessage = err.message;
                 this.successMessage = "";
             })
+    }
+
+    tryGetAllUsers() {
+        this.userService.getAllUsers()
+            .then(res => {
+                for (var x in res) {
+                    res.hasOwnProperty(x) && this.userList.push(res[x])
+                }
+                console.log(this.userList);
+            }, err => {
+                console.log(err);
+            })
+    }
+
+    onChangeNameDropdown(name) {
+        this.nameDropdown = name;
+    }
+    
+    onChangeGroupDropdown(group) {
+        this.groupDropdown = group;
+    }
+
+    onClickSaveButton() {
+        
     }
 }

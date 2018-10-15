@@ -73,7 +73,7 @@ export class UserService {
         let name = res.child('name').val();
         let permission = res.child('permission').val();
         let group = res.child('group').val();
-        resolve({name, permission, group});
+        resolve({ name, permission, group });
       }, err => {
         reject(err);
       });
@@ -82,5 +82,16 @@ export class UserService {
 
   getUserUid() {
     return firebase.auth().currentUser.uid;
+  }
+
+  getAllUsers() {
+    return new Promise<any>((resolve, reject) => {
+      let user = firebase.database().ref('users')
+      user.once('value').then(res => {
+        resolve(res.val());
+      }, err => {
+        reject(err);
+      });
+    });
   }
 }
