@@ -23,17 +23,23 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.createForm();
+    let rememberEmail = this.authService.getRememberme();
+    if (!!rememberEmail) {
+      this.createForm(rememberEmail, true);
+    } else {
+      this.createForm('', false);
+    }
   }
 
   ngOnInit() {
-    this.coreService.generateTime()
+    this.coreService.generateTime();
   }
 
-  createForm() {
+  createForm(email, rememberme) {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: [email, Validators.required],
+      password: ['', Validators.required],
+      rememberme: [rememberme]
     });
   }
 
@@ -41,6 +47,7 @@ export class LoginComponent implements OnInit {
     this.authService.doLogin(value)
       .then(res => {
         this.prepareLogUser()
+        this.toggleRememberme(value);
         this.router.navigate(['/main']);
       }, err => {
         console.log(err);
@@ -65,5 +72,13 @@ export class LoginComponent implements OnInit {
       }, err => {
         console.log(err);
       })
+  }
+
+  toggleRememberme(value) {
+    if (value.rememberme) {
+      this.authService.setRememberme(value.email);
+    } else {
+      this.authService.removeRememberme();
+    }
   }
 }

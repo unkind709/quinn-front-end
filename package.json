@@ -26,6 +26,7 @@
     "firebase": "^5.5.4",
     "moment": "^2.22.2",
     "ng-bootstrap": "^1.6.3",
+    "ngx-cookie-service": "^1.0.10",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
