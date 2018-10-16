@@ -25,9 +25,6 @@ export class AdminComponent implements OnInit {
     nameDropdown = "Name";
     groupDropdown = "Group";
 
-    adminName = '';
-    userName = '';
-
     constructor(
         public authService: AuthService,
         public userService: UserService,
@@ -138,38 +135,32 @@ export class AdminComponent implements OnInit {
         this.setPermissionSuccessMessage = '';
     }
 
-    prepareAdminName(adminUid) {
+    tryLogSetPermission(userUid, group) {
+        let adminUid = this.userService.getUserUid();
+        this.prepareAdminName(adminUid, userUid, group)
+    }
+
+    prepareAdminName(adminUid, userUid, group) {
         this.userService.getUserName(adminUid)
             .then(res => {
-                console.log(res)
-                this.adminName = res;
-                return res;
+                this.prepareUserName(userUid, group, res);
             }, err => {
                 console.log(err)
             })
-    }
-
-    prepareUserName(userUid) {
-        this.userService.getUserName(userUid)
+        }
+        
+        prepareUserName(userUid, group, adminName) {
+            this.userService.getUserName(userUid)
             .then(res => {
-                console.log(res)
-                this.userName = res;
-                return res;
+                this.logPermission(adminName, group, res, userUid)
             }, err => {
                 console.log(err)
             })
     }
 
-    tryLogSetPermission(uid, group) {
-        let adminUid = this.userService.getUserUid();
-        let adminName = this.prepareAdminName(adminUid);
-        let userName = this.prepareUserName(uid);
-        console.log("uid : " + uid);
-        console.log("group : " + group);
-        console.log("adminUid : " + adminUid);
-        console.log("adminName : " + this.adminName);
-        console.log("userName : " + this.userName);
-        this.userService.logSetPermission(this.adminName, group, this.userName, uid)
+
+    logPermission(adminName, group, userName, uid) {
+        this.userService.logSetPermission(adminName, group, userName, uid)
             .then(res => {
                 console.log("Log Set Permission Success");
             }, err => {
