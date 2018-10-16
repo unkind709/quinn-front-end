@@ -105,10 +105,8 @@ export class AdminComponent implements OnInit {
     onClickSaveButton() {
         this.userService.updatePermission(this.userUid, this.groupDropdown)
             .then(() => {
-                console.log("this.useruid1 : " + this.userUid)
                 this.setPermissionSuccessMessage = "Update permission success!";
                 this.tryLogSetPermission(this.userUid, this.groupDropdown);
-                console.log("this.useruid2 : " + this.userUid)
                 this.clearDropdown();  /* Must write here because uid will clear too fast */
             }, (error) => {
                 this.setPermissionErrorMessage = error;
