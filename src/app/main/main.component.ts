@@ -237,8 +237,8 @@ export class MainComponent implements OnInit {
     }
   }
 
-  openModal(message, type, action) {
-    this.modal.open(message, type, action, this.userModel.permission);
+  openModal(message, type, action, room) {
+    this.modal.open("Room: " + room + " " + message, type, action, this.userModel.permission);
   }
 
   toggleReserve(roomdata: any, room: string, floor: number) {
@@ -252,15 +252,15 @@ export class MainComponent implements OnInit {
 
     //checkPermission
     if (roomdata.status === 'available' && this.userModel.permission === 2) {
-      this.openModal("International sold or sold?", 'prompt', roomdata.status);
+      this.openModal("International sold or sold?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'available' && this.userModel.permission > 2) {
-      this.openModal("International sold or sold or not available?", 'prompt', roomdata.status);
+      this.openModal("International sold or sold or not available?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'international-sold' && this.userModel.permission > 2) {
-      this.openModal("Cancel international sold?", 'prompt', roomdata.status);
+      this.openModal("Cancel international sold?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'sold' && this.userModel.permission > 2) {
-      this.openModal("Cancel sold?", 'prompt', roomdata.status);
+      this.openModal("Cancel sold?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'not-available' && this.userModel.permission > 2) {
-      this.openModal("Available?", 'prompt', roomdata.status);
+      this.openModal("Available?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     }
   }
 
