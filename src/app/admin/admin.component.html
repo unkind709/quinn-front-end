@@ -1,97 +1,103 @@
 <div class="admin-page background-tint">
-    <div class="padding-admin">
-        <div class="row mt-5 ml-0 mr-0">
-            <div class="col-md-6 maxsize">
-                <div class="card">
-                    <h2 class="text-center mt-4">Quinn-Admin</h2>
-                    <div class="card-body mb-4">
-                        <form [formGroup]="adminForm">
-                            <ngb-tabset [justify]="currentJustify">
-                                <ngb-tab class="tabset-style">
-                                    <ng-template ngbTabTitle><span class="tab-title">Create an account</span></ng-template>
-                                    <ng-template ngbTabContent>
-                                        <div class="form-group"></div>
-                                        <div class="form-group">
-                                            <input type="text" formControlName="name" class="form-control form-control-lg"
-                                                placeholder="Your Name">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" formControlName="email" class="form-control form-control-lg"
-                                                placeholder="Your Email">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" formControlName="password" class="form-control form-control-lg"
-                                                placeholder="Your Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" formControlName="confirmPassword" class="form-control form-control-lg"
-                                                placeholder="Confirm Your Password">
-                                            <label class="error">{{errorMessage}}</label>
-                                            <label class="success">{{successMessage}}</label>
-                                        </div>
-                                        <button type="submit" (click)="tryRegister(adminForm.value)" class="btn btn-lg btn-block registerTab">
-                                            <h4>Register</h4>
-                                        </button>
-                                    </ng-template>
-                                </ngb-tab>
+  <div class="padding-admin">
+    <div class="row mt-5 ml-0 mr-0">
+      <div class="col-md-6 maxsize">
+        <div class="card">
+          <h2 class="text-center mt-4">Quinn-Admin</h2>
+          <div class="card-body mb-4">
+            <form [formGroup]="adminForm">
+              <ngb-tabset [justify]="currentJustify">
+                <ngb-tab class="tabset-style">
+                  <ng-template ngbTabTitle><span class="tab-title">Create an account</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                      <input type="text" formControlName="name" class="form-control form-control-lg" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" formControlName="email" class="form-control form-control-lg" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" formControlName="password" class="form-control form-control-lg"
+                        placeholder="Your Password">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" formControlName="confirmPassword" class="form-control form-control-lg"
+                        placeholder="Confirm Your Password">
+                      <label class="error">{{errorMessage}}</label>
+                      <label class="success">{{successMessage}}</label>
+                    </div>
+                    <button type="submit" (click)="tryRegister(adminForm.value)" class="btn btn-lg btn-block registerTab">
+                      <h4>Register</h4>
+                    </button>
+                  </ng-template>
+                </ngb-tab>
 
-                                <ngb-tab class="tabset-style">
-                                    <ng-template ngbTabTitle><span class="tab-title">Set permission</span></ng-template>
-                                    <ng-template ngbTabContent>
-                                        <div class="row mt-5">
-                                            <div class="col-6 ml-2">
-                                                <label><h5>Name</h5></label>
-                                            </div>
-                                            <div class="col-4">
-                                                <div ngbDropdown class="d-inline-block">
-                                                    <button class="btn btn-outline-primary" id="nameDropdown"
-                                                        ngbDropdownToggle>{{nameDropdown}}</button>
-                                                    <div ngbDropdownMenu aria-labelledby="nameDropdown">
-                                                        <button class="dropdown-item" (click)="onChangeNameDropdown(users.name)"
-                                                            *ngFor="let users of userList">{{users.name}}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-5">
-                                            <div class="col-6 ml-2">
-                                                <label><h5>Group</h5></label>
-                                            </div>
-                                            <div class="col-4">
-                                                <div ngbDropdown class="d-inline-block">
-                                                    <button class="btn btn-outline-primary" id="groupDropdown"
-                                                        ngbDropdownToggle>{{groupDropdown}}</button>
-                                                    <div ngbDropdownMenu aria-labelledby="groupDropdown">
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Admin')">Admin</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Sale Lead')">Sale
-                                                            Lead</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Sale')">Sale</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Viewer')">Viewer</button>
-                                                        <button class="dropdown-item" (click)="onChangeGroupDropdown('Annonymous')">Annonymous</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5"></div>
-                                        <label class="mt-4 error">{{setPermissionErrorMessage}}</label>
-                                        <label class="mt-4 success">{{setPermissionSuccessMessage}}</label>
-                                        <button type="submit" (click)="onClickSaveButton()" class="mt-3 mb-2 btn btn-lg btn-block permissionTab">
-                                            <h4>Save</h4>
-                                        </button>
-                                    </ng-template>
-                                </ngb-tab>
+                <ngb-tab class="tabset-style">
+                  <ng-template ngbTabTitle><span class="tab-title">Set permission</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="row mt-5">
+                      <div class="col-6 ml-2">
+                        <label>
+                          <h5>Name</h5>
+                        </label>
+                      </div>
+                      <div class="col-4">
+                        <div ngbDropdown class="d-inline-block">
+                          <button class="btn btn-outline-primary" id="nameDropdown" ngbDropdownToggle>{{nameDropdown}}</button>
+                          <div ngbDropdownMenu aria-labelledby="nameDropdown">
+                            <button class="dropdown-item" (click)="onChangeNameDropdown(users.name)" *ngFor="let users of userList">{{users.name}}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-6 ml-2">
+                        <label>
+                          <h5>Group</h5>
+                        </label>
+                      </div>
+                      <div class="col-4">
+                        <div ngbDropdown class="d-inline-block">
+                          <button class="btn btn-outline-primary" id="groupDropdown" ngbDropdownToggle>{{groupDropdown}}</button>
+                          <div ngbDropdownMenu aria-labelledby="groupDropdown">
+                            <button class="dropdown-item" (click)="onChangeGroupDropdown('Admin')">Admin</button>
+                            <button class="dropdown-item" (click)="onChangeGroupDropdown('Sale Lead')">Sale
+                              Lead</button>
+                            <button class="dropdown-item" (click)="onChangeGroupDropdown('Sale')">Sale</button>
+                            <button class="dropdown-item" (click)="onChangeGroupDropdown('Viewer')">Viewer</button>
+                            <button class="dropdown-item" (click)="onChangeGroupDropdown('Annonymous')">Annonymous</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-5"></div>
+                    <label class="mt-4 error">{{setPermissionErrorMessage}}</label>
+                    <label class="mt-4 success">{{setPermissionSuccessMessage}}</label>
+                    <button type="submit" (click)="onClickSaveButton()" class="mt-3 mb-2 btn btn-lg btn-block permissionTab">
+                      <h4>Save</h4>
+                    </button>
+                  </ng-template>
+                </ngb-tab>
 
-                                <!-- <ngb-tab class="tabset-style">
+                <!-- <ngb-tab class="tabset-style">
                                     <ng-template ngbTabTitle><span class="tab-title">Log</span></ng-template>
                                     <ng-template ngbTabContent>
                                         <p>Manage Log.</p>
                                     </ng-template>
                                 </ngb-tab> -->
-                            </ngb-tabset>
-                        </form>
-                    </div>
-                </div>
-            </div>
+              </ngb-tabset>
+            </form>
+          </div>
         </div>
+        <div class="btn">
+          <a href [routerLink]="['/main']" class="button cta"> <svg id="arrow" xmlns="http://www.w3.org/2000/svg" x="0px"
+              y="0px" width="25" height="25" viewBox="0 0 45 45" enable-background="new 0 0 11.121 19.414" xml:space="preserve">
+              <path style="fill:white;" d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" /></svg> Back to
+            Matrix
+            page</a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
