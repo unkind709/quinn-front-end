@@ -31,7 +31,11 @@
   cursor: default;
 }
 
-.reserved {
+.room-blue {
+  background-color: #00CCCC;
+}
+
+.international-sold {
   background-color: #D6B478;
 }
 

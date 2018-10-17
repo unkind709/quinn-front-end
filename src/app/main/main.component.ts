@@ -169,7 +169,7 @@ export class MainComponent implements OnInit {
 
   total = 0;
   availableTotal = 0;
-  reservedTotal = 0;
+  internationalSoldTotal = 0;
   soldTotal = 0;
   notAvailableTotal = 0;
 
@@ -192,7 +192,7 @@ export class MainComponent implements OnInit {
           this.userModel.permission = res.permission;
           this.userModel.username = res.name;
           this.userModel.group = res.group
-          console.log(res);
+          // console.log(res);
         }, (err2) => {
           console.log(err2);
         });
@@ -242,8 +242,6 @@ export class MainComponent implements OnInit {
   }
 
   toggleReserve(roomdata: any, room: string, floor: number) {
-    console.log(roomdata, room, floor);
-
     if (roomdata.diagram === 'A') {
       this.building = 'diagram-a';
     } else if (roomdata.diagram === 'B') {
@@ -254,22 +252,20 @@ export class MainComponent implements OnInit {
 
     //checkPermission
     if (roomdata.status === 'available' && this.userModel.permission === 2) {
-      this.openModal("Reserve?", 'prompt', roomdata.status);
-    } else if (roomdata.status === 'reserved' && this.userModel.permission === 2) {
-      this.openModal("Sold?", 'prompt', roomdata.status);
-    } else if (roomdata.status === 'reserved' && (this.userModel.permission === 3 || this.userModel.permission === 4)) {
-      this.openModal("Sold or cancel reserve?", 'prompt', roomdata.status);
+      this.openModal("International sold or sold?", 'prompt', roomdata.status);
+    } else if (roomdata.status === 'available' && this.userModel.permission > 2) {
+      this.openModal("International sold or sold or not available?", 'prompt', roomdata.status);
+    } else if (roomdata.status === 'international-sold' && this.userModel.permission > 2) {
+      this.openModal("Cancel international sold?", 'prompt', roomdata.status);
     } else if (roomdata.status === 'sold' && this.userModel.permission > 2) {
       this.openModal("Cancel sold?", 'prompt', roomdata.status);
     } else if (roomdata.status === 'not-available' && this.userModel.permission > 2) {
       this.openModal("Available?", 'prompt', roomdata.status);
-    } else if (roomdata.status === 'available' && (this.userModel.permission === 3 || this.userModel.permission === 4)) {
-      this.openModal("Reserve or not-available?", 'prompt', roomdata.status);
     }
   }
 
   doReserve(action) {
-    console.log(action);
+    // console.log(action);
     this.matrixService.reserve(this.building, this.room, this.floor, action, this.userModel)
       .then(res => {
         console.log('success');
@@ -279,8 +275,8 @@ export class MainComponent implements OnInit {
   }
 
   getTotalSummary() {
-    var summaryBuildingA = this.getSummary(this.matrixData1)
-    var summaryBuildingB = this.getSummary(this.matrixData2)
+    this.getSummary(this.matrixData1);
+    this.getSummary(this.matrixData2);
   }
 
   getSummary(building) {
@@ -289,8 +285,8 @@ export class MainComponent implements OnInit {
         this.total++
         if (building[floor.name][element].status === 'available') {
           this.availableTotal++;
-        } else if (building[floor.name][element].status === 'reserved') {
-          this.reservedTotal++;
+        } else if (building[floor.name][element].status === 'international-sold') {
+          this.internationalSoldTotal++;
         } else if (building[floor.name][element].status === 'sold') {
           this.soldTotal++;
         } else if (building[floor.name][element].status === 'not-available') {
@@ -302,7 +298,7 @@ export class MainComponent implements OnInit {
 
   clearSummary() {
     this.total = 0;
-    this.reservedTotal = 0;
+    this.internationalSoldTotal = 0;
     this.soldTotal = 0;
     this.availableTotal = 0;
     this.notAvailableTotal = 0;

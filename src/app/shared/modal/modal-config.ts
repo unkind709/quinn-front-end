@@ -42,20 +42,20 @@ export class NgbdModalConfig {
         this.modalService.dismissAll();
     }
 
-    confirm() {
-        if (this.action === 'available') {
-            this.doAction.emit('reserved');
-        } else if (this.action === 'reserved') {
+    confirm(todo) {
+        if (todo === 'isold') {
+            this.doAction.emit('international-sold');
+        } else if (todo === 'sold') {
             this.doAction.emit('sold');
         }
         this.modalService.dismissAll();
     }
 
     cancel() {
-        if (this.action === 'reserved') {
+        if (this.action === 'international-sold') {
             this.doAction.emit('available');
         } else if (this.action === 'sold') {
-            this.doAction.emit('reserved');
+            this.doAction.emit('available');
         }
         this.modalService.dismissAll();
     }

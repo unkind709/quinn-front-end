@@ -2,3 +2,18 @@
 .close:not(:disabled):not(.disabled):hover {
   outline: none;
 }
+
+.btn-warning {
+  background-color: #D6B478;
+  border-color: #D6B478;
+}
+
+.btn-danger {
+  background-color: #971515;
+  border-color: #971515;
+}
+
+.btn-default {
+  background-color: #C9C4C1;
+  border-color: #C9C4C1;
+}
