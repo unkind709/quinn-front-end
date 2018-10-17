@@ -237,8 +237,8 @@ export class MainComponent implements OnInit {
     }
   }
 
-  openModal(message, type, action) {
-    this.modal.open(message, type, action, this.userModel.permission);
+  openModal(message, type, action, room) {
+    this.modal.open("Room: " + room + " " + message, type, action, this.userModel.permission);
   }
 
   toggleReserve(roomdata: any, room: string, floor: number) {
@@ -254,17 +254,17 @@ export class MainComponent implements OnInit {
 
     //checkPermission
     if (roomdata.status === 'available' && this.userModel.permission === 2) {
-      this.openModal("Reserve?", 'prompt', roomdata.status);
+      this.openModal("Reserve?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'reserved' && this.userModel.permission === 2) {
-      this.openModal("Sold?", 'prompt', roomdata.status);
+      this.openModal("Sold?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'reserved' && (this.userModel.permission === 3 || this.userModel.permission === 4)) {
-      this.openModal("Sold or cancel reserve?", 'prompt', roomdata.status);
+      this.openModal("Sold or cancel reserve?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'sold' && this.userModel.permission > 2) {
-      this.openModal("Cancel sold?", 'prompt', roomdata.status);
+      this.openModal("Cancel sold?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'not-available' && this.userModel.permission > 2) {
-      this.openModal("Available?", 'prompt', roomdata.status);
+      this.openModal("Available?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     } else if (roomdata.status === 'available' && (this.userModel.permission === 3 || this.userModel.permission === 4)) {
-      this.openModal("Reserve or not-available?", 'prompt', roomdata.status);
+      this.openModal("Reserve or not-available?", 'prompt', roomdata.status, roomdata['room-detail'].room);
     }
   }
 
