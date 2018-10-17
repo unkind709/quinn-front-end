@@ -169,10 +169,6 @@ body {
   top: -10px;
   height: 85px;
   width: 0;
-  background: rgba(225,183,126,0.25);
-}
-.btn a.button.cta:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 .btn a.button.cta:hover #arrow {
   animation: bounce .6s;
@@ -181,7 +177,6 @@ body {
 }
 .btn a.button.cta:hover:before {
   width: 100%;
-  background: rgba(225,183,126,0.15);
 }
 
 @-webkit-keyframes bounce {
