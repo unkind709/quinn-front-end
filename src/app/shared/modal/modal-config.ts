@@ -13,6 +13,7 @@ export class NgbdModalConfig {
     action: string;
     message: string;
     permission: number;
+    room: string;
     @Output() doAction = new EventEmitter<string>();
 
     constructor(config: NgbModalConfig, private modalService: NgbModal) {
@@ -21,10 +22,11 @@ export class NgbdModalConfig {
         config.keyboard = false;
     }
 
-    open(message, type, action, permission) {
+    open(message, type, action, permission, room) {
         this.message = message;
         this.action = action;
         this.permission = permission;
+        this.room = room;
         if (type == 'prompt') {
             this.modalService.open(this.prompt, { centered: true });
         }

@@ -238,7 +238,7 @@ export class MainComponent implements OnInit {
   }
 
   openModal(message, type, action, room) {
-    this.modal.open("Room: " + room + " " + message, type, action, this.userModel.permission);
+    this.modal.open(message, type, action, this.userModel.permission, room);
   }
 
   toggleReserve(roomdata: any, room: string, floor: number) {

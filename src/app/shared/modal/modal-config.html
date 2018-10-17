@@ -3,8 +3,8 @@
     <h1>{{message}}</h1>
   </div>
   <div class="modal-footer" style="margin:auto; border: none;">
-    <button type="button" class="btn btn-primary" (click)="close()" *ngIf="action === 'reset'">Close</button>
-    <button type="button" class="btn btn-primary" (click)="d()" *ngIf="action !== 'reset'">Close</button>
+    <button type="button" class="btn btn-info" (click)="close()" *ngIf="action === 'reset'">Close</button>
+    <button type="button" class="btn btn-info" (click)="d()" *ngIf="action !== 'reset'">Close</button>
   </div>
 </ng-template>
 
@@ -15,7 +15,7 @@
     </button>
   </div>
   <div class="modal-body text-center">
-    <h1>{{message}}</h1>
+    <h3>Room: {{room}}<br />{{message}}</h3>
   </div>
   <div class="modal-footer" style="margin:auto; border: none;">
     <button type="button" class="btn btn-warning" (click)="confirm('isold')" *ngIf="action === 'available'">International
@@ -24,10 +24,10 @@
     <button type="button" class="btn btn-default" (click)="available()" *ngIf="action === 'available' && permission > 2">Not
       available</button>
 
-    <button type="button" class="btn btn-primary" (click)="available()" *ngIf="action === 'not-available' && permission > 2">Confirm</button>
+    <button type="button" class="btn btn-info" (click)="available()" *ngIf="action === 'not-available' && permission > 2">Confirm</button>
 
 
-    <button type="button" class="btn btn-primary" (click)="cancel()" *ngIf="action === 'international-sold' && permission > 2">Confirm</button>
-    <button type="button" class="btn btn-primary" (click)="cancel()" *ngIf="action === 'sold' && permission > 2">Confirm</button>
+    <button type="button" class="btn btn-info" (click)="cancel()" *ngIf="action === 'international-sold' && permission > 2">Confirm</button>
+    <button type="button" class="btn btn-info" (click)="cancel()" *ngIf="action === 'sold' && permission > 2">Confirm</button>
   </div>
 </ng-template>
