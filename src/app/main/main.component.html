@@ -48,7 +48,7 @@
           <td *ngFor="let matrix of matrixData1[floor.name]; let i = index" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
             class="text-center" [ngClass]="{'room-md': matrix['room-detail'].merge !=='xy', 
             'room-lg':  matrix['room-detail'].merge ==='xy', 
-            'reserved': matrix.status === 'reserved', 'not-available': matrix.status === 'not-available', 'sold': matrix.status === 'sold'}"
+            'international-sold': matrix.status === 'international-sold', 'not-available': matrix.status === 'not-available', 'sold': matrix.status === 'sold'}"
             (click)="toggleReserve(matrix, floor.name, i)">
             {{matrix['room-detail'].room}}<br />
             {{matrix['room-detail'].space | number:'0.2-2'}} m2
@@ -73,16 +73,17 @@
           <td class="room-md no-border"></td>
           <td class="room-md no-border"></td>
         </tr>
-        <tr *ngFor="let floor of buildA">
+        <tr *ngFor="let floor of buildA; let lastFloor = last">
           <td *ngIf="floor.floor > 24" colspan="6" class="no-border"></td>
           <td *ngFor="let matrix of matrixData2[floor.name]; let i = index" [attr.colspan]="calColspan(matrix['room-detail'].merge)"
             class="text-center" [ngClass]="{'room-md': matrix['room-detail'].merge !=='xy', 
             'room-lg':  matrix['room-detail'].merge ==='xy', 
-            'reserved': matrix.status === 'reserved', 'not-available': matrix.status === 'not-available', 'sold': matrix.status === 'sold'}"
+            'international-sold': matrix.status === 'international-sold', 'not-available': matrix.status === 'not-available', 'sold': matrix.status === 'sold'}"
             (click)="toggleReserve(matrix, floor.name, i)">
             {{matrix['room-detail'].room}}<br />
             {{matrix['room-detail'].space | number:'0.2-2'}} m2
           </td>
+          <td *ngIf="lastFloor" class="room-md room-blue" colspan="6"></td>
         </tr>
       </tbody>
     </table>
@@ -107,7 +108,7 @@
           </tr>
           <tr>
             <td class="mc-6"><label>International Sold</label></td>
-            <td class="mc-6 sum"><label>{{reservedTotal}}</label></td>
+            <td class="mc-6 sum"><label>{{internationalSoldTotal}}</label></td>
           </tr>
           <tr>
             <td class="mc-6"><label>Sold</label></td>
