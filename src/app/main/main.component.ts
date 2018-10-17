@@ -181,7 +181,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.getData();
   }
 
   getUser() {
@@ -192,8 +191,9 @@ export class MainComponent implements OnInit {
           this.userModel.permission = res.permission;
           this.userModel.username = res.name;
           this.userModel.group = res.group
-          // console.log(res);
+          this.getData();
         }, (err2) => {
+          this.router.navigate(['/login']);
           console.log(err2);
         });
     }, (err1) => {
@@ -212,6 +212,9 @@ export class MainComponent implements OnInit {
       this.matrixData2 = res[1];
       this.clearSummary()
       this.getTotalSummary()
+    }, (err) => {
+      this.openModal("You don't have a permission to view this page. Please contact to administrator.",
+        'error', 'logout', '');
     });
   }
 

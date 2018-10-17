@@ -47,6 +47,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   openModal(message, type, action) {
-    this.modal.open(message, type, action, 0);
+    this.modal.open(message, type, action, 0, '');
   }
 }

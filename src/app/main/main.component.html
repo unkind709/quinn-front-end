@@ -163,4 +163,4 @@
     </div>
   </div>
 </footer>
-<ngbd-modal-config #modal (doAction)="doReserve($event)"></ngbd-modal-config>
+<ngbd-modal-config #modal (doAction)="doReserve($event)" (noPermision)="logout()"></ngbd-modal-config>

@@ -15,6 +15,7 @@ export class NgbdModalConfig {
     permission: number;
     room: string;
     @Output() doAction = new EventEmitter<string>();
+    @Output() noPermision = new EventEmitter<boolean>();
 
     constructor(config: NgbModalConfig, private modalService: NgbModal) {
         // customize default values of modals used by this component tree
@@ -64,6 +65,11 @@ export class NgbdModalConfig {
 
     close() {
         this.doAction.emit('reset');
+        this.modalService.dismissAll();
+    }
+
+    logout() {
+        this.noPermision.emit(true);
         this.modalService.dismissAll();
     }
 }
