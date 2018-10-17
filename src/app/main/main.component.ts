@@ -141,7 +141,7 @@ export class MainComponent implements OnInit {
     { name: '16th' },
     { name: '15th' },
     { name: '14th' },
-    { name: '13th' },
+    { name: '12Ath' },
     { name: '12th' },
     { name: '11th' },
     { name: '10th' },
